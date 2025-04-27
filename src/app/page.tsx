@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { supabase } from "../utils/supabaseClient";
 
 const howItWorksSteps = [
   {
@@ -60,6 +61,13 @@ const whyQuotes = [
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [mobileNavVisible, setMobileNavVisible] = useState(false);
+  const mobileNavTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,6 +78,39 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Handle slide-in/out visibility
+  useEffect(() => {
+    if (mobileNavOpen) {
+      setMobileNavVisible(true);
+    } else if (mobileNavVisible) {
+      // Wait for animation before hiding
+      mobileNavTimeout.current = setTimeout(() => setMobileNavVisible(false), 350);
+    }
+    return () => {
+      if (mobileNavTimeout.current) clearTimeout(mobileNavTimeout.current);
+    };
+  }, [mobileNavOpen]);
+
+  const handleWaitlistClick = () => {
+    setShowModal(true);
+    setMessage(null);
+    setEmail("");
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage(null);
+    const { error } = await supabase.from("email").insert([{ email }]);
+    setLoading(false);
+    if (error) {
+      setMessage("Something went wrong. Please try again.");
+    } else {
+      setMessage("Thank you for joining the waitlist!");
+      setEmail("");
+    }
+  };
+
   return (
     <div className="relative min-h-screen w-full bg-[#f7f3ef] font-sans overflow-x-hidden text-[#1a1a1a]" style={{fontFamily: 'var(--font-nng, Inter, Arial, sans-serif)', scrollBehavior: 'smooth'}}>
       {/* Neon/gradient background streaks */}
@@ -79,18 +120,62 @@ export default function Home() {
       </div>
 
       {/* Sticky Nav Bar with scroll effect */}
-      <header className={`sticky top-0 z-50 flex justify-between items-center px-8 pt-8 pb-4 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow' : 'bg-transparent'}`}>
+      <header className={`sticky top-0 z-50 flex justify-between items-center px-4 sm:px-8 pt-6 pb-3 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow' : 'bg-transparent'}`}>
         <div className="flex items-center gap-2">
           <span className="w-8 h-8 flex items-center justify-center"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><ellipse cx="16" cy="16" rx="13" ry="8" stroke="#1a1a1a" strokeWidth="2"/><ellipse cx="16" cy="16" rx="13" ry="8" transform="rotate(30 16 16)" stroke="#1a1a1a" strokeWidth="1.2" opacity=".5"/></svg></span>
           <span className="text-xl font-bold tracking-wide" style={{letterSpacing: '-0.01em'}}>CIRA</span>
         </div>
-        <nav className="flex gap-4 text-sm font-medium">
-          <a href="#how-it-works" className="px-4 py-1 border border-[#1a1a1a] rounded-full hover:bg-[#f7f3ef] transition" >How It Works</a>
-          <a href="#rewards" className="px-4 py-1 border border-[#1a1a1a] rounded-full hover:bg-[#f7f3ef] transition" >Rewards</a>
-          <a href="#trust" className="px-4 py-1 border border-[#1a1a1a] rounded-full hover:bg-[#f7f3ef] transition" >Trust</a>
-          <a href="#why-cira" className="px-4 py-1 border border-[#1a1a1a] rounded-full hover:bg-[#f7f3ef] transition" >Why CIRA Matters</a>
-          <a href="#cta" className="px-4 py-1 border border-[#1a1a1a] rounded-full hover:bg-[#f7f3ef] transition" >Join</a>
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex gap-4 text-sm font-medium">
+          <a href="#how-it-works" className="px-4 py-1 border border-[#1a1a1a] rounded-full hover:bg-[#f7f3ef] transition">How It Works</a>
+          <a href="#rewards" className="px-4 py-1 border border-[#1a1a1a] rounded-full hover:bg-[#f7f3ef] transition">Rewards</a>
+          <a href="#trust" className="px-4 py-1 border border-[#1a1a1a] rounded-full hover:bg-[#f7f3ef] transition">How We Rate Brands</a>
+          <a href="#why-cira" className="px-4 py-1 border border-[#1a1a1a] rounded-full hover:bg-[#f7f3ef] transition">Why CIRA Matters</a>
+          <a href="#cta" className="px-4 py-1 border border-[#1a1a1a] rounded-full hover:bg-[#f7f3ef] transition">Join</a>
         </nav>
+        {/* Hamburger for Mobile */}
+        <button
+          className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-full border border-[#1a1a1a] focus:outline-none focus:ring-2 focus:ring-[#3b3bfa]/40 transition"
+          onClick={() => setMobileNavOpen(!mobileNavOpen)}
+          aria-label="Open navigation menu"
+        >
+          <span className={`block w-6 h-0.5 bg-[#1a1a1a] mb-1 transition-all duration-300 ${mobileNavOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
+          <span className={`block w-6 h-0.5 bg-[#1a1a1a] mb-1 transition-all duration-300 ${mobileNavOpen ? 'opacity-0' : ''}`}></span>
+          <span className={`block w-6 h-0.5 bg-[#1a1a1a] transition-all duration-300 ${mobileNavOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+        </button>
+        {/* Mobile Nav Dropdown */}
+        {mobileNavVisible && (
+          <div className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm flex flex-col items-end md:hidden">
+            <div
+              className={`w-3/4 max-w-xs bg-white rounded-l-3xl shadow-lg mt-4 mr-2 py-8 px-6 flex flex-col gap-4 transform transition-transform transition-opacity duration-400 ease-in-out
+                ${mobileNavOpen ? 'translate-y-0 opacity-100' : '-translate-y-8 opacity-0 pointer-events-none'}`}
+              style={{ willChange: 'transform, opacity' }}
+            >
+              {/* Close Button */}
+              <button
+                className="absolute top-4 right-4 text-2xl text-[#3b3bfa] hover:text-[#d95d4b] focus:outline-none transition-transform duration-300"
+                onClick={() => setMobileNavOpen(false)}
+                aria-label="Close navigation menu"
+                type="button"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <a href="#how-it-works" className="py-2 px-4 rounded-full border border-[#1a1a1a] text-base font-medium hover:bg-[#f7f3ef] transition" onClick={() => setMobileNavOpen(false)}>How It Works</a>
+              <a href="#rewards" className="py-2 px-4 rounded-full border border-[#1a1a1a] text-base font-medium hover:bg-[#f7f3ef] transition" onClick={() => setMobileNavOpen(false)}>Rewards</a>
+              <a href="#trust" className="py-2 px-4 rounded-full border border-[#1a1a1a] text-base font-medium hover:bg-[#f7f3ef] transition" onClick={() => setMobileNavOpen(false)}>How We Rate Brands</a>
+              <a href="#why-cira" className="py-2 px-4 rounded-full border border-[#1a1a1a] text-base font-medium hover:bg-[#f7f3ef] transition" onClick={() => setMobileNavOpen(false)}>Why CIRA Matters</a>
+              <a href="#cta" className="py-2 px-4 rounded-full border border-[#1a1a1a] text-base font-medium hover:bg-[#f7f3ef] transition" onClick={() => setMobileNavOpen(false)}>Join</a>
+            </div>
+            <style jsx global>{`
+              .transition-transform {
+                transition-property: transform;
+              }
+              .transition-opacity {
+                transition-property: opacity;
+              }
+            `}</style>
+          </div>
+        )}
       </header>
 
       {/* Hero Section */}
@@ -102,7 +187,12 @@ export default function Home() {
             Define your style,&nbsp;meaning,<br />and identity
           </h1>
           <p className="text-xl text-[#1a1a1a] max-w-lg mb-4">Discover ethical, enduring pieces guided by meaning, not trends.</p>
-          <button className="px-8 py-3 border-2 border-[#1a1a1a] rounded-full bg-transparent text-lg font-medium hover:bg-[#e6e0f8] transition">Join the Waitlist</button>
+          <button
+            className="px-8 py-3 border-2 border-[#1a1a1a] rounded-full bg-transparent text-lg font-medium hover:bg-[#e6e0f8] transition"
+            onClick={handleWaitlistClick}
+          >
+            Join the Waitlist
+          </button>
         </div>
         {/* Right: Abstract Ellipse Illustration */}
         <div className="flex-1 flex flex-col items-center justify-center relative">
@@ -224,7 +314,12 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <button className="mt-16 px-10 py-4 border-2 border-[#3b3bfa] rounded-full bg-transparent text-xl font-medium text-[#3b3bfa] hover:bg-[#e6e0f8] transition-all duration-200 hover:scale-105 hover:shadow-lg">Claim Your CIRA Card Now</button>
+        <button
+          className="mt-16 px-10 py-4 border-2 border-[#3b3bfa] rounded-full bg-transparent text-xl font-medium text-[#3b3bfa] hover:bg-[#e6e0f8] transition-all duration-200 hover:scale-105 hover:shadow-lg"
+          onClick={handleWaitlistClick}
+        >
+          Claim Your CIRA Card Now
+        </button>
       </section>
 
       {/* How We Rate Brands Section */}
@@ -274,9 +369,72 @@ export default function Home() {
         <div className="relative z-10 flex flex-col items-center text-center px-4 py-20">
           <h2 className="text-3xl sm:text-4xl font-normal text-[#1a1a1a] mb-6" style={{fontFamily: 'var(--font-nng, Inter, Arial, sans-serif)'}}>Ready to get started?</h2>
           <p className="text-lg text-[#1a1a1a]/80 mb-8 max-w-xl">Join CIRA&apos;s early access waitlist. Curate who you are becoming through clothes that matter.</p>
-          <button className="px-10 py-4 border-2 border-[#3b3bfa] rounded-full bg-transparent text-xl font-medium text-[#3b3bfa] hover:bg-[#e6e0f8] transition-all duration-200 hover:scale-105 hover:shadow-lg">Join the Waitlist</button>
+          <button
+            className="px-10 py-4 border-2 border-[#3b3bfa] rounded-full bg-transparent text-xl font-medium text-[#3b3bfa] hover:bg-[#e6e0f8] transition-all duration-200 hover:scale-105 hover:shadow-lg"
+            onClick={handleWaitlistClick}
+          >
+            Join the Waitlist
+          </button>
         </div>
       </section>
+
+      {/* Modal Popup */}
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm transition-opacity duration-300 animate-fade-in">
+          <div className="relative bg-white/90 rounded-3xl shadow-2xl p-8 w-full max-w-sm border border-[#e6e0f8] scale-95 opacity-0 animate-modal-in">
+            <button
+              className="absolute top-4 right-4 text-2xl text-[#3b3bfa] hover:text-[#d95d4b] transition-transform duration-300 focus:outline-none animate-spin-on-close"
+              onClick={() => setShowModal(false)}
+              aria-label="Close"
+              type="button"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h3 className="text-2xl font-semibold mb-4 text-center text-[#3b3bfa] tracking-tight" style={{fontFamily: 'var(--font-nng, Inter, Arial, sans-serif)'}}>Join the Waitlist</h3>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <input
+                type="email"
+                required
+                placeholder="Enter your email"
+                className="border border-[#e6e0f8] rounded-lg px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-[#3b3bfa]/40 transition"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+              />
+              <button
+                type="submit"
+                className="bg-gradient-to-r from-[#3b3bfa] to-[#d95d4b] text-white rounded-full px-4 py-2 font-medium shadow hover:scale-105 hover:shadow-lg transition-all duration-200"
+                disabled={loading}
+              >
+                {loading ? "Joining..." : "Join"}
+              </button>
+            </form>
+            {message && <div className="mt-4 text-center text-sm text-[#3b3bfa]">{message}</div>}
+          </div>
+          <style jsx global>{`
+            @keyframes modal-in {
+              0% { opacity: 0; transform: scale(0.95); }
+              100% { opacity: 1; transform: scale(1); }
+            }
+            .animate-modal-in {
+              animation: modal-in 0.3s cubic-bezier(0.4,0,0.2,1) forwards;
+            }
+            @keyframes spin-on-close {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(180deg); }
+            }
+            .animate-spin-on-close:active {
+              animation: spin-on-close 0.4s cubic-bezier(0.4,0,0.2,1);
+            }
+            @keyframes fade-in {
+              from { opacity: 0; }
+              to { opacity: 1; }
+            }
+            .animate-fade-in {
+              animation: fade-in 0.3s cubic-bezier(0.4,0,0.2,1);
+            }
+          `}</style>
+        </div>
+      )}
     </div>
   );
 }
