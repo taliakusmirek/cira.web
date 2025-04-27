@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 
 const howItWorksSteps = [
   {
@@ -274,7 +273,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#f7f3ef] via-[#f7f3ef] to-[#e6e0f8] pointer-events-none" />
         <div className="relative z-10 flex flex-col items-center text-center px-4 py-20">
           <h2 className="text-3xl sm:text-4xl font-normal text-[#1a1a1a] mb-6" style={{fontFamily: 'var(--font-nng, Inter, Arial, sans-serif)'}}>Ready to get started?</h2>
-          <p className="text-lg text-[#1a1a1a]/80 mb-8 max-w-xl">Join CIRA's early access waitlist. Curate who you are becoming through clothes that matter.</p>
+          <p className="text-lg text-[#1a1a1a]/80 mb-8 max-w-xl">Join CIRA&apos;s early access waitlist. Curate who you are becoming through clothes that matter.</p>
           <button className="px-10 py-4 border-2 border-[#3b3bfa] rounded-full bg-transparent text-xl font-medium text-[#3b3bfa] hover:bg-[#e6e0f8] transition-all duration-200 hover:scale-105 hover:shadow-lg">Join the Waitlist</button>
         </div>
       </section>
