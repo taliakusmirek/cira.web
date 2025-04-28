@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "CIRA - Conscious Fashion Rewards",
-  description: "Discover ethical, enduring pieces — guided by meaning, not trends.",
+  title: "CIRA - Build a wardrobe that actually lasts",
+  description: "Instantly see the fabric truth, construction grade, human impact score — and your wardrobe's future value.",
 };
 
 export default function RootLayout({
