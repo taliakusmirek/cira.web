@@ -2,25 +2,11 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { supabase } from "../utils/supabaseClient";
-
-interface TrustCard {
-  icon: React.ReactNode;
-  title: string;
-  desc: string;
-}
-
-interface WhyQuote {
-  quote: string;
-  desc: string;
-}
-
-const trustCards: TrustCard[] = [];
-
-const whyQuotes: WhyQuote[] = [];
+import Image from "next/image";
 
 // Add new analytical grid background component
 const AnalyticalGrid = () => (
-  <div className="fixed inset-0 z-0 pointer-events-none">
+  <div className="fixed inset-0 z-[-1] pointer-events-none">
     <div className="absolute inset-0 bg-[#fafafa]">
       <div className="absolute inset-0 grid-background" />
     </div>
@@ -70,6 +56,21 @@ export default function Home() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [mobileNavVisible, setMobileNavVisible] = useState(false);
   const mobileNavTimeout = useRef<NodeJS.Timeout | null>(null);
+  const heroImages = [
+    "/blazer.png",
+    "/floral.png",
+    "/pink.png",
+    "/trench.png",
+    "/green.png",
+  ];
+  const [currentHeroImageIndex, setCurrentHeroImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentHeroImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
+    }, 300); 
+    return () => clearInterval(interval);
+  }, [heroImages.length]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -91,7 +92,7 @@ export default function Home() {
     return () => {
       if (mobileNavTimeout.current) clearTimeout(mobileNavTimeout.current);
     };
-  }, [mobileNavOpen]);
+  }, [mobileNavOpen, mobileNavVisible]);
 
   const handleWaitlistClick = () => {
     setShowModal(true);
@@ -115,18 +116,20 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen w-full font-sans overflow-x-hidden text-[#1a1a1a]" style={{fontFamily: 'var(--font-nng, Inter, Arial, sans-serif)', scrollBehavior: 'smooth'}}>
-      <AnalyticalGrid />
       
+      <AnalyticalGrid />
+      <PixelEffect />
       {/* Update header styles */}
       <header className={`sticky top-0 z-50 flex justify-between items-center px-4 sm:px-8 py-6 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md' : 'bg-transparent'}`}>
         <div className="flex items-center gap-2">
+          <Image src="/logo.png" alt="CIRA Logo" className="w-10 h-10" width={500} height={500} />
           <span className="text-xl font-bold tracking-wide text-[#1a1a1a]">CIRA</span>
         </div>
         <nav className="hidden md:flex gap-6 text-sm font-medium">
           <a href="#how-it-works" className="text-[#1a1a1a] hover:text-[#3b3bfa] transition">How It Works</a>
-          <a href="#why-cira" className="text-[#1a1a1a] hover:text-[#3b3bfa] transition">Why CIRA</a>
-          <a href="#rewards" className="text-[#1a1a1a] hover:text-[#3b3bfa] transition">Rewards</a>
-          <a href="#compare" className="text-[#1a1a1a] hover:text-[#3b3bfa] transition">Compare</a>
+          <a href="#why-cira" className="hidden text-[#1a1a1a] hover:text-[#3b3bfa] transition">Why CIRA</a>
+          <a href="#rewards" className="hidden text-[#1a1a1a] hover:text-[#3b3bfa] transition">Rewards</a>
+          <a href="#cta" className="text-[#1a1a1a] hover:text-[#3b3bfa] transition">Compare</a>
         </nav>
         <button className="md:hidden" onClick={() => setMobileNavOpen(!mobileNavOpen)}>
           <span className="sr-only">Menu</span>
@@ -143,20 +146,22 @@ export default function Home() {
             Are your clothes lying to you?
           </h1>
           <p className="text-lg md:text-xl text-gray-600">
-            Stop guessing. Start choosing better.
+          Buy less. Choose better. Know the truth.
           </p>
         </div>
 
-        {/* Blazer Image */}
+        {/* Rotate Image */}
         <div className="w-full max-w-xs mx-auto mb-8">
-          <div className="relative">
-            <img 
-              src="/blazer.png" 
-              alt="CIRA Analysis" 
-              className="w-full h-auto"
-            />
-          </div>
-        </div>
+  <div className="relative">
+    <Image 
+      src={heroImages[currentHeroImageIndex]} 
+      alt="CIRA Analysis" 
+      className="w-full h-auto transition-opacity duration-500 ease-in-out"
+      width={500}
+      height={500}
+    />
+  </div>
+</div>
 
         {/* Search Section */}
         <div className="w-full max-w-2xl mx-auto">
@@ -184,8 +189,8 @@ export default function Home() {
       {/* How It Works Section */}
       <section id="how-it-works" className="relative w-full py-24 px-4 flex flex-col items-center justify-start min-h-[160vh] bg-white">
   <div className="max-w-5xl w-full">
-    <h2 className="text-2xl md:text-3xl font-semibold mb-16 text-center">
-      Your wardrobe deserves the truth.
+    <h2 className="text-2xl md:text-3xl font-semibold mb-24 text-center">
+    We show you what the tag won&apos;t.
     </h2>
 
     {/* 3 Steps */}
@@ -193,18 +198,18 @@ export default function Home() {
       {[
         {
           number: "01",
-          title: "Paste a Product Link",
-          description: "Any clothing item you're thinking about buying."
+          title: "Discover",
+          description: "Browse curated clothing from trusted, verified brands — filtered by quality, ethics, and values"
         },
         {
           number: "02",
-          title: "Get Your Report",
-          description: "See the real quality score, construction details, and impact assessment."
+          title: "Learn",
+          description: "See the real quality score, construction details, and impact assessment of each item you find with our CIRA Report"
         },
         {
           number: "03",
           title: "Shop Smarter",
-          description: "Make informed decisions based on real data, not marketing claims."
+          description: "Save your favorites, earn rewards, and feel confident in what you&apos;re buying and why it matters"
         }
       ].map((step, i) => (
         <div key={i} className="relative p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
@@ -218,10 +223,12 @@ export default function Home() {
     {/* Example Report */}
     <div className="max-w-4xl w-full mx-auto grid md:grid-cols-2 gap-8 items-start mt-16">
       <div className="relative">
-        <img 
+        <Image 
           src="/blazer.png" 
           alt="CIRA Analysis" 
           className="w-full h-auto rounded-lg"
+          width={500}
+          height={500}
         />
       </div>
       <div className="rounded-xl shadow-lg p-8 bg-white">
@@ -234,7 +241,7 @@ export default function Home() {
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
-            Verified
+            Verified from Zara
           </span>
         </div>
 
@@ -291,27 +298,29 @@ export default function Home() {
 
 
       {/* Why CIRA Section */}
-      <section id="why-cira" className="py-24 px-4 min-h-[100vh] flex flex-col justify-center">
-      <div className="max-w-4xl mx-auto">
+      <section id="why-cira" className=" hidden py-24 px-16 flex flex-col items-center justify-center">
+      <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-center">
             You deserve better than the polyester pandemic.
           </h2>
           <div className="space-y-8 text-center">
-            <p className="text-lg text-gray-600">
-              Fast fashion tricks you into chasing trends — and paying more over time for clothes that fall apart.
+            <p className="text-lg max-w-xl text-gray-600">
+              Fast fashion tricks you into chasing trends, and paying more over time for clothes that fall apart.
+            </p>
+            <p className="text-lg max-w-xltext-gray-600">
+              Greenwashing hides human rights violations and cheap labor behind fake &quot;eco&quot; promises
+
             </p>
             <p className="text-lg text-gray-600">
-              Greenwashing hides human rights violations and cheap labor behind fake "eco" promises.
-            </p>
-            <p className="text-lg text-gray-600">
-              CIRA shows you the real material strength, construction quality, and human impact behind every piece — before you buy.
+              CIRA shows you the real material strength, construction quality, and human impact behind every piece, before you buy.
             </p>
             <p className="text-lg font-medium text-[#3b3bfa]">
-              Build a wardrobe that actually lasts. And a future you're proud of.
+              Build a wardrobe that actually lasts. And a future you&apos;re proud of.
             </p>
           </div>
         </div>
       </section>
+    
 
       {/* Choose Your Rewards Section - Hidden but preserved */}
       <section id="rewards" className="hidden w-full max-w-5xl mx-auto mb-40 mt-24 px-4 flex flex-col items-center animate-fade-in">
@@ -385,7 +394,7 @@ export default function Home() {
       </section>
 
       {/* Comparison Section */}
-      <section id="comparison" className="py-24 px-4 bg-gradient-to-b from-gray-50 to-white">
+      <section id="comparison" className="hidden py-24 px-4 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-semibold mb-16 text-center">
             The CIRA Difference
@@ -442,12 +451,13 @@ export default function Home() {
       </section>
 
       {/* Final CTA Section */}
-      <section id="cta" className="relative w-full min-h-[70vh] flex flex-col items-center justify-center mt-24">
+      <section id="cta" className="relative w-full min-h-[70vh] flex flex-col items-center justify-center mt-36">
         <div className="relative z-10 flex flex-col items-center text-center px-4 py-20">
-          <h2 className="text-3xl sm:text-4xl font-normal text-[#1a1a1a] mb-6">Ready to scan your orbit?</h2>
-          <p className="text-lg text-[#1a1a1a]/80 mb-8 max-w-xl">
-            Paste any shopping link.<br />
-            See what it's really made of.
+        <h2 className="text-3xl max-w-xl sm:text-4xl font-normal text-[#1a1a1a] mb-6">
+  You deserve better than the <span className="font-bold">polyester pandemic.</span>
+</h2>          <p className="text-lg text-[#1a1a1a]/80 mb-16 max-w-6xl -mt-4">
+            Paste any shopping link.
+            See what it&apos;s really made of.
           </p>
           <button
             className="px-10 py-4 bg-transparent border-2 border-[#3b3bfa] text-[#3b3bfa] rounded-full text-xl font-medium hover:bg-[#3b3bfa] hover:text-white transition-all duration-200"
