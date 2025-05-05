@@ -4,7 +4,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { supabase } from "../utils/supabaseClient";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { createClient } from "@supabase/supabase-js";
 
 // Add new analytical grid background component
 const AnalyticalGrid = () => (
@@ -172,10 +171,10 @@ const handleScan = async () => {
           <span className="text-xl font-bold tracking-wide text-[#1a1a1a]">CIRA</span>
         </div>
         <nav className="hidden md:flex gap-6 text-sm font-medium">
-          <a href="#how-it-works" className="text-[#1a1a1a] hover:text-[#3b3bfa] transition">How It Works</a>
-          <a href="#why-cira" className="hidden text-[#1a1a1a] hover:text-[#3b3bfa] transition">Why CIRA</a>
-          <a href="#rewards" className="hidden text-[#1a1a1a] hover:text-[#3b3bfa] transition">Rewards</a>
-          <a href="#cta" className="text-[#1a1a1a] hover:text-[#3b3bfa] transition">Compare</a>
+          <a href="#how-it-works" className="text-[#1a1a1a] hover:text-[#7079a9] transition">How It Works</a>
+          <a href="#why-cira" className="hidden text-[#1a1a1a] hover:text-[#7079a9] transition">Why CIRA</a>
+          <a href="#rewards" className="hidden text-[#1a1a1a] hover:text-[#7079a9] transition">Rewards</a>
+          <a href="#cta" className="text-[#1a1a1a] hover:text-[#7079a9] transition">Compare</a>
         </nav>
         <button className="md:hidden" onClick={() => setMobileNavOpen(!mobileNavOpen)}>
           <span className="sr-only">Menu</span>
@@ -188,9 +187,10 @@ const handleScan = async () => {
       {/* Hero Section */}
       <section className="relative flex flex-col items-center justify-start min-h-screen px-4 pt-8">
         <div className="max-w-4xl mx-auto text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-            Are your clothes lying to you?
-          </h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight 
+               bg-gradient-to-r from-[#666e9d] to-[#909de2] 
+               bg-clip-text text-transparent">
+Are your clothes lying to you?</h1>
           <p className="text-lg md:text-xl text-gray-600">
           Buy less. Choose better. Know the truth.
           </p>
@@ -215,12 +215,12 @@ const handleScan = async () => {
             <input
               type="url"
               placeholder="Paste any shopping link"
-              className="w-full md:w-2/3 px-6 py-4 rounded-lg border-2 border-[#3b3bfa] bg-transparent focus:outline-none focus:ring-2 focus:ring-[#3b3bfa]"
+              className="w-full md:w-2/3 px-6 py-4 rounded-lg border-2 border-[#7079a9] bg-transparent focus:outline-none focus:ring-2 focus:ring-[#7079a9]"
               value={scanUrl}
               onChange={(e) => setScanUrl(e.target.value)}
             />
             <button
-              className="w-full md:w-auto px-8 py-4 border-2 border-[#3b3bfa] text-[#3b3bfa] rounded-lg font-medium hover:bg-[#3b3bfa] hover:text-white transition-all duration-300 bg-transparent"
+              className="w-full md:w-auto px-8 py-4 border-2 border-[#7079a9] text-[#2c366e] rounded-lg font-medium hover:bg-[#7079a9] hover:text-white transition-all duration-300 bg-transparent"
               onClick={handleScan}
             >
               🔍 Scan for Truth
@@ -259,7 +259,7 @@ const handleScan = async () => {
         }
       ].map((step, i) => (
         <div key={i} className="relative p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
-          <span className="absolute -top-6 left-6 text-4xl font-bold text-[#3b3bfa]/10">{step.number}</span>
+          <span className="absolute -top-6 left-6 text-4xl font-bold text-[#2c366e]/30">{step.number}</span>
           <h3 className="text-xl font-semibold mb-4">{step.title}</h3>
           <p className="text-gray-600">{step.description}</p>
         </div>
@@ -280,7 +280,7 @@ const handleScan = async () => {
       <div className="rounded-xl shadow-lg p-8 bg-white">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h3 className="text-lg font-medium text-gray-900">Navy Wool Blazer</h3>
+            <h3 className="text-lg font-medium text-gray-900">Cream Wool Blazer</h3>
             <p className="text-sm text-gray-500">Analyzed 2 minutes ago</p>
           </div>
           <span className="px-3 py-1 bg-green-50 text-green-600 rounded-full text-sm font-medium flex items-center gap-1">
@@ -296,10 +296,10 @@ const handleScan = async () => {
           <div>
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-gray-500">Overall Score</span>
-              <span className="text-lg font-semibold text-[#3b3bfa]">85%</span>
+              <span className="text-lg font-semibold text-[#7079a9]">85%</span>
             </div>
             <div className="w-full bg-gray-100 rounded-full h-3">
-              <div className="bg-[#3b3bfa] h-3 rounded-full transition-all duration-500" style={{ width: '85%' }} />
+              <div className="bg-[#7079a9] h-3 rounded-full transition-all duration-500" style={{ width: '85%' }} />
             </div>
           </div>
 
@@ -335,7 +335,7 @@ const handleScan = async () => {
 
     {/* Call to Action Button */}
     <div className="text-center mt-16">
-      <button className="px-8 py-4 bg-white border-2 border-[#3b3bfa] text-[#3b3bfa] rounded-lg font-medium hover:bg-[#3b3bfa] hover:text-white transition-colors">
+      <button className="px-8 py-4 bg-white border-2 border-[#7079a9] text-[#7079a9] rounded-lg font-medium hover:bg-[#7079a9] hover:text-white transition-colors">
         🔍 Try Your First Scan
       </button>
     </div>
@@ -360,7 +360,7 @@ const handleScan = async () => {
             <p className="text-lg text-gray-600">
               CIRA shows you the real material strength, construction quality, and human impact behind every piece, before you buy.
             </p>
-            <p className="text-lg font-medium text-[#3b3bfa]">
+            <p className="text-lg font-medium text-[#7079a9]">
               Build a wardrobe that actually lasts. And a future you&apos;re proud of.
             </p>
           </div>
@@ -374,15 +374,15 @@ const handleScan = async () => {
         <div className="flex flex-col md:flex-row gap-16 w-full relative">
           {/* Link Bank Card Option */}
           <div className="flex-1">
-            <h3 className="font-medium text-2xl mb-6 text-[#3b3bfa] text-center" style={{fontFamily: 'var(--font-nng, Inter, Arial, sans-serif)'}}>Link Your Bank Card</h3>
-            <div className="flex flex-col items-center border-2 border-[#3b3bfa]/20 rounded-3xl p-10 bg-white shadow-sm min-h-[360px] transition-all duration-200 hover:scale-105 hover:shadow-lg" style={{minWidth: 220}}>
+            <h3 className="font-medium text-2xl mb-6 text-[#7079a9] text-center" style={{fontFamily: 'var(--font-nng, Inter, Arial, sans-serif)'}}>Link Your Bank Card</h3>
+            <div className="flex flex-col items-center border-2 border-[#7079a9]/20 rounded-3xl p-10 bg-white shadow-sm min-h-[360px] transition-all duration-200 hover:scale-105 hover:shadow-lg" style={{minWidth: 220}}>
               <ul className="text-[#1a1a1a] text-base mb-8 space-y-4 list-disc pl-6 text-left w-full flex-1">
                 <li>Standard cash back at certified brands</li>
                 <li>Track your conscious wardrobe growth</li>
                 <li>Easy, no new card needed</li>
                 <li>Limited access to premium drops</li>
               </ul>
-              <span className="inline-block border border-[#3b3bfa] text-[#3b3bfa] text-xs font-semibold px-3 py-1 rounded-full w-fit">Simple start, basic rewards</span>
+              <span className="inline-block border border-[#7079a9] text-[#7079a9] text-xs font-semibold px-3 py-1 rounded-full w-fit">Simple start, basic rewards</span>
             </div>
           </div>
           
@@ -399,13 +399,13 @@ const handleScan = async () => {
               </ul>
               <div className="flex flex-col items-center gap-2">
                 <span className="inline-block border border-[#d95d4b] text-[#d95d4b] text-xs font-semibold px-3 py-1 rounded-full w-fit">Maximize your rewards</span>
-                <span className="inline-block border border-[#3b3bfa] text-[#3b3bfa] text-xs font-semibold px-3 py-1 rounded-full w-fit">Recommended for conscious shoppers</span>
+                <span className="inline-block border border-[#7079a9] text-[#7079a9] text-xs font-semibold px-3 py-1 rounded-full w-fit">Recommended for conscious shoppers</span>
               </div>
             </div>
           </div>
         </div>
         <button
-          className="mt-16 px-10 py-4 border-2 border-[#3b3bfa] rounded-full bg-transparent text-xl font-medium text-[#3b3bfa] hover:bg-[#e6e0f8] transition-all duration-200 hover:scale-105 hover:shadow-lg"
+          className="mt-16 px-10 py-4 border-2 border-[#7079a9] rounded-full bg-transparent text-xl font-medium text-[#7079a9] hover:bg-[#e6e0f8] transition-all duration-200 hover:scale-105 hover:shadow-lg"
           onClick={handleWaitlistClick}
         >
           Claim Your CIRA Card Now
@@ -487,7 +487,7 @@ const handleScan = async () => {
           </div>
           <div className="text-center mt-16">
             <button
-              className="px-8 py-4 bg-[#3b3bfa] text-white rounded-lg font-medium hover:bg-[#3b3bfa]/90 transition-colors"
+              className="px-8 py-4 bg-[#A8B2EA] text-white rounded-lg font-medium hover:bg-[#A8B2EA]/90 transition-colors"
               onClick={() => {/* Handle sign up */}}
             >
               Join the Movement
@@ -506,7 +506,7 @@ const handleScan = async () => {
             See what it&apos;s really made of.
           </p>
           <button
-            className="px-10 py-4 bg-transparent border-2 border-[#3b3bfa] text-[#3b3bfa] rounded-full text-xl font-medium hover:bg-[#3b3bfa] hover:text-white transition-all duration-200"
+            className="px-10 py-4 bg-transparent border-2 border-[#A8B2EA] text-[#2c366e] rounded-full text-xl font-medium hover:bg-[#A8B2EA] hover:text-white transition-all duration-200"
             onClick={handleWaitlistClick}
           >
             🔍 Reveal the Truth
@@ -519,32 +519,32 @@ const handleScan = async () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm transition-opacity duration-300 animate-fade-in">
           <div className="relative bg-white/90 rounded-3xl shadow-2xl p-8 w-full max-w-sm border border-[#e6e0f8] scale-95 opacity-0 animate-modal-in">
             <button
-              className="absolute top-4 right-4 text-2xl text-[#3b3bfa] hover:text-[#d95d4b] transition-transform duration-300 focus:outline-none animate-spin-on-close"
+              className="absolute top-4 right-4 text-2xl text-[#A8B2EA] hover:text-[#d95d4b] transition-transform duration-300 focus:outline-none animate-spin-on-close"
               onClick={() => setShowModal(false)}
               aria-label="Close"
               type="button"
             >
               <span aria-hidden="true">&times;</span>
             </button>
-            <h3 className="text-2xl font-semibold mb-4 text-center text-[#3b3bfa] tracking-tight" style={{fontFamily: 'var(--font-nng, Inter, Arial, sans-serif)'}}>Join the Waitlist</h3>
+            <h3 className="text-2xl font-semibold mb-4 text-center text-[#A8B2EA] tracking-tight" style={{fontFamily: 'var(--font-nng, Inter, Arial, sans-serif)'}}>Join the Waitlist</h3>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <input
                 type="url"
                 required
                 placeholder="Paste any shopping link"
-                className="border border-[#e6e0f8] rounded-lg px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-[#3b3bfa]/40 transition"
+                className="border border-[#e6e0f8] rounded-lg px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-[#A8B2EA]/40 transition"
                 value={scanUrl}
                 onChange={(e) => setScanUrl(e.target.value)}
               />
               <button
                 type="submit"
-                className="bg-gradient-to-r from-[#3b3bfa] to-[#d95d4b] text-white rounded-full px-4 py-2 font-medium shadow hover:scale-105 hover:shadow-lg transition-all duration-200"
+                className="bg-gradient-to-r from-[#A8B2EA] to-[#d95d4b] text-white rounded-full px-4 py-2 font-medium shadow hover:scale-105 hover:shadow-lg transition-all duration-200"
                 disabled={loading}
               >
                 {loading ? "Joining..." : "Join"}
               </button>
             </form>
-            {message && <div className="mt-4 text-center text-sm text-[#3b3bfa]">{message}</div>}
+            {message && <div className="mt-4 text-center text-sm text-[#A8B2EA]">{message}</div>}
           </div>
           <style jsx global>{`
             @keyframes modal-in {
@@ -604,7 +604,7 @@ const handleScan = async () => {
 
             .glitch-pixel {
               position: absolute;
-              background: #3b3bfa;
+              background: #A8B2EA;
               border-radius: 1px;
               animation: glitch 4s ease-in-out infinite;
             }
@@ -642,15 +642,15 @@ const handleScan = async () => {
             /* Update button styles to be more minimal */
             button {
               background: transparent;
-              border: 1px solid #3b3bfa;
-              color: #3b3bfa;
+              border: 1px solid #A8B2EA;
+              color: #A8B2EA;
               transition: all 0.2s ease;
             }
 
             button:hover {
-              background: rgba(59, 59, 250, 0.05);
-              border-color: #3b3bfa;
-              color: #3b3bfa;
+              background: #A8B2EA;
+              border-color: #A8B2EA;
+              color: black;
             }
           `}</style>
         </div>

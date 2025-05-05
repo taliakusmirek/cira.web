@@ -1,9 +1,8 @@
 'use client';
-
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
+import { useSearchParams } from "next/navigation";
 
 // Connect to Supabase
 const supabase = createClient(
@@ -11,10 +10,25 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
-export default function ReportPage({ searchParams }: { searchParams: URLSearchParams }) {
-  const url = searchParams.get("url");
-  const [report, setReport] = useState<any>(null);
+export default function ReportPage() {
+  const searchParams = useSearchParams();
+  const url = searchParams?.get("url") ?? null;
+  const [report, setReport] = useState<Report | null>(null);
 
+  interface Report {
+    id: string; // uuid as string
+    url: string;
+    brand: string;
+    overall_score: number;
+    quality: string;
+    construction: string;
+    durability: string;
+    materials: string;
+    ethics: string;
+    cost_per_wear: string;
+    created_at: string; // or `Date` if you parse it
+  }
+  
   useEffect(() => {
     if (url) {
       (async () => {
