@@ -3,6 +3,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { supabase } from "../utils/supabaseClient";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { createClient } from "@supabase/supabase-js";
 
 // Add new analytical grid background component
 const AnalyticalGrid = () => (
@@ -114,6 +116,50 @@ export default function Home() {
     }
   };
 
+  const router = useRouter();
+
+const handleScan = async () => {
+  setLoading(true);
+  setMessage(null);
+  try {
+    const res = await fetch("/api/analyze", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ url: scanUrl }),
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      const { data: saved, error } = await supabase.from("reports").insert([{
+        url: scanUrl,
+        brand: data.brand,
+        overall_score: data.overallScore,
+        quality: data.quality,
+        construction: data.construction,
+        durability: data.durability,
+        ethics: data.ethics,
+        cost_per_wear: data.costPerWear,
+      }]).select().single();
+
+      if (error) {
+        console.error("Insert error:", error.message);
+        setMessage("Something went wrong saving the report.");
+        return;
+      }
+
+      router.push(`/report/${saved.id}`);
+    } else {
+      setMessage("⚠️ Could not analyze this link.");
+    }
+  } catch (err) {
+    console.error(err);
+    setMessage("❌ An error occurred. Try again.");
+  }
+  setLoading(false);
+};
+
+  
+
   return (
     <div className="relative min-h-screen w-full font-sans overflow-x-hidden text-[#1a1a1a]" style={{fontFamily: 'var(--font-nng, Inter, Arial, sans-serif)', scrollBehavior: 'smooth'}}>
       
@@ -140,7 +186,7 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative flex flex-col items-center justify-start min-h-screen px-4 pt-12">
+      <section className="relative flex flex-col items-center justify-start min-h-screen px-4 pt-8">
         <div className="max-w-4xl mx-auto text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
             Are your clothes lying to you?
@@ -175,7 +221,7 @@ export default function Home() {
             />
             <button
               className="w-full md:w-auto px-8 py-4 border-2 border-[#3b3bfa] text-[#3b3bfa] rounded-lg font-medium hover:bg-[#3b3bfa] hover:text-white transition-all duration-300 bg-transparent"
-              onClick={() => {/* Handle scan */}}
+              onClick={handleScan}
             >
               🔍 Scan for Truth
             </button>
