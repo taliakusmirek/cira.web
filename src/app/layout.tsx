@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "CIRA - Build a wardrobe that actually lasts",
+  title: "CIRA - Are your clothes lying to you?",
   description: "Instantly see the fabric truth, construction grade, human impact score — and your wardrobe's future value.",
 };
 

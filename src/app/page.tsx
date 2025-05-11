@@ -4,11 +4,27 @@ import React, { useEffect, useState, useRef } from "react";
 import { supabase } from "../utils/supabaseClient";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { FadeInSection } from "../components/FadeInSection";
+
+const PRIMARY = "#F610C1"; // Hot Pink from image
+const ACCENT = "#F6F640"; // Bright Yellow from image
+const BACKGROUND = "#ffffff"; // White background
+const TEXT = "#1a1a1a";
+
+const YellowGradient = {
+  top: 'linear-gradient(180deg, rgba(255, 242, 51, 0.3) 0%, rgba(255, 242, 51, 0) 100%)',
+  bottom: 'linear-gradient(0deg, rgba(255, 242, 51, 0.3) 0%, rgba(255, 242, 51, 0) 100%)',
+  card: 'linear-gradient(135deg, rgba(255, 242, 51, 0.1) 0%, rgba(255, 242, 51, 0.05) 100%)'
+};
 
 // Add new analytical grid background component
 const AnalyticalGrid = () => (
   <div className="fixed inset-0 z-[-1] pointer-events-none">
-    <div className="absolute inset-0 bg-[#fafafa]">
+    {/* Top Gradient */}
+    <div className="absolute top-0 left-0 right-0 h-48" style={{ background: YellowGradient.top }} />
+    {/* Bottom Gradient */}
+    <div className="absolute bottom-0 left-0 right-0 h-48" style={{ background: YellowGradient.bottom }} />
+    <div className="absolute inset-0" style={{ backgroundColor: BACKGROUND }}>
       <div className="absolute inset-0 grid-background" />
     </div>
   </div>
@@ -160,187 +176,98 @@ const handleScan = async () => {
   
 
   return (
-    <div className="relative min-h-screen w-full font-sans overflow-x-hidden text-[#1a1a1a]" style={{fontFamily: 'var(--font-nng, Inter, Arial, sans-serif)', scrollBehavior: 'smooth'}}>
+    <div className="relative min-h-screen w-full font-sans overflow-x-hidden text-[PRIMARY]" style={{fontFamily: 'var(--font-nng, Inter, Arial, sans-serif)', scrollBehavior: 'smooth'}}>
       
       <AnalyticalGrid />
       <PixelEffect />
       {/* Update header styles */}
-      <header className={`sticky top-0 z-50 flex justify-between items-center px-4 sm:px-8 py-6 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md' : 'bg-transparent'}`}>
-        <div className="flex items-center gap-2">
-          <Image src="/logo.png" alt="CIRA Logo" className="w-10 h-10" width={500} height={500} />
-          <span className="text-xl font-bold tracking-wide text-[#1a1a1a]">CIRA</span>
-        </div>
-        <nav className="hidden md:flex gap-6 text-sm font-medium">
-          <a href="#how-it-works" className="text-[#1a1a1a] hover:text-[#7079a9] transition">How It Works</a>
-          <a href="#why-cira" className="hidden text-[#1a1a1a] hover:text-[#7079a9] transition">Why CIRA</a>
-          <a href="#rewards" className="hidden text-[#1a1a1a] hover:text-[#7079a9] transition">Rewards</a>
-          <a href="#cta" className="text-[#1a1a1a] hover:text-[#7079a9] transition">Compare</a>
-        </nav>
-        <button className="md:hidden" onClick={() => setMobileNavOpen(!mobileNavOpen)}>
-          <span className="sr-only">Menu</span>
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </header>
-
-      {/* Hero Section */}
-      <section className="relative flex flex-col items-center justify-start min-h-screen px-4 pt-8">
-        <div className="max-w-4xl mx-auto text-center mb-8">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight 
-               bg-gradient-to-r from-[#666e9d] to-[#909de2] 
-               bg-clip-text text-transparent">
-Are your clothes lying to you?</h1>
-          <p className="text-lg md:text-xl text-gray-600">
-          Buy less. Choose better. Know the truth.
-          </p>
-        </div>
-
-        {/* Rotate Image */}
-        <div className="w-full max-w-xs mx-auto mb-8">
-  <div className="relative">
-    <Image 
-      src={heroImages[currentHeroImageIndex]} 
-      alt="CIRA Analysis" 
-      className="w-full h-auto transition-opacity duration-500 ease-in-out"
-      width={500}
-      height={500}
-    />
-  </div>
-</div>
-
-        {/* Search Section */}
-        <div className="w-full max-w-2xl mx-auto">
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-center mb-4">
-            <input
-              type="url"
-              placeholder="Paste any shopping link"
-              className="w-full md:w-2/3 px-6 py-4 rounded-lg border-2 border-[#7079a9] bg-transparent focus:outline-none focus:ring-2 focus:ring-[#7079a9]"
-              value={scanUrl}
-              onChange={(e) => setScanUrl(e.target.value)}
-            />
-            <button
-              className="w-full md:w-auto px-8 py-4 border-2 border-[#7079a9] text-[#2c366e] rounded-lg font-medium hover:bg-[#7079a9] hover:text-white transition-all duration-300 bg-transparent"
-              onClick={handleScan}
-            >
-              🔍 Scan for Truth
+      <div className="sticky top-0 z-[100]">
+        <header className={`flex justify-between items-center px-4 sm:px-8 py-6 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md' : 'bg-transparent'}`}>
+          {/* Navbar Gradient */}
+          <div className="absolute inset-0" style={{ background: YellowGradient.top, opacity: 0.7 }} />
+          <FadeInSection className="flex justify-between items-center w-full relative z-10">
+            <div className="flex items-center gap-2">
+              <Image src="/transparent.png" alt="CIRA Logo" className="w-10 h-10" width={500} height={500} />
+              <span className="text-xl font-bold tracking-wide" style={{ color: '#FF1493' }}>CIRA</span>
+            </div>
+            <nav className="hidden md:flex gap-6 text-sm font-medium" style={{ color: '#FF1493' }}>
+              <a href="#how-it-works" className="text-[#FF1493] hover:text-[#ff69b4] transition">How It Works</a>
+              <a href="#why-cira" className="hidden text-[#FF1493] hover:text-[#ff69b4] transition">Why CIRA</a>
+              <a href="#rewards" className="hidden text-[#FF1493] hover:text-[#ff69b4] transition">Rewards</a>
+              <a href="#contact" className="text-[#FF1493] hover:text-[#ff69b4] transition">Contact</a>
+            </nav>
+            <button className="md:hidden hover:text-[#FF1493] transition-colors" onClick={() => setMobileNavOpen(!mobileNavOpen)}>
+              <span className="sr-only">Menu</span>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
             </button>
-          </div>
-          <p className="text-sm text-gray-500 text-center">
-            Instantly see the real quality, construction, and impact behind every piece.
-          </p>
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section id="how-it-works" className="relative w-full py-24 px-4 flex flex-col items-center justify-start min-h-[160vh] bg-white">
-  <div className="max-w-5xl w-full">
-    <h2 className="text-2xl md:text-3xl font-semibold mb-24 text-center">
-    We show you what the tag won&apos;t.
-    </h2>
-
-    {/* 3 Steps */}
-    <div className="grid md:grid-cols-3 gap-8 mb-24">
-      {[
-        {
-          number: "01",
-          title: "Discover",
-          description: "Browse curated clothing from trusted, verified brands — filtered by quality, ethics, and values"
-        },
-        {
-          number: "02",
-          title: "Learn",
-          description: "See the real quality score, construction details, and impact assessment of each item you find with our CIRA Report"
-        },
-        {
-          number: "03",
-          title: "Shop Smarter",
-          description: "Save your favorites, earn rewards, and feel confident in what you&apos;re buying and why it matters"
-        }
-      ].map((step, i) => (
-        <div key={i} className="relative p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
-          <span className="absolute -top-6 left-6 text-4xl font-bold text-[#2c366e]/30">{step.number}</span>
-          <h3 className="text-xl font-semibold mb-4">{step.title}</h3>
-          <p className="text-gray-600">{step.description}</p>
-        </div>
-      ))}
-    </div>
-
-    {/* Example Report */}
-    <div className="max-w-4xl w-full mx-auto grid md:grid-cols-2 gap-8 items-start mt-16">
-      <div className="relative">
-        <Image 
-          src="/blazer.png" 
-          alt="CIRA Analysis" 
-          className="w-full h-auto rounded-lg"
-          width={500}
-          height={500}
-        />
+          </FadeInSection>
+        </header>
       </div>
-      <div className="rounded-xl shadow-lg p-8 bg-white">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h3 className="text-lg font-medium text-gray-900">Cream Wool Blazer</h3>
-            <p className="text-sm text-gray-500">Analyzed 2 minutes ago</p>
-          </div>
-          <span className="px-3 py-1 bg-green-50 text-green-600 rounded-full text-sm font-medium flex items-center gap-1">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-            Verified from Zara
-          </span>
-        </div>
 
-        <div className="space-y-8">
-          {/* Overall Score */}
-          <div>
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-medium text-gray-500">Overall Score</span>
-              <span className="text-lg font-semibold text-[#7079a9]">85%</span>
-            </div>
-            <div className="w-full bg-gray-100 rounded-full h-3">
-              <div className="bg-[#7079a9] h-3 rounded-full transition-all duration-500" style={{ width: '85%' }} />
-            </div>
-          </div>
-
-          {/* Metrics Grid */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-gray-50 rounded-lg p-4">
-              <div className="text-sm text-gray-500 mb-1">Quality</div>
-              <div className="text-lg font-semibold text-gray-900">Excellent</div>
-            </div>
-            <div className="bg-gray-50 rounded-lg p-4">
-              <div className="text-sm text-gray-500 mb-1">Construction</div>
-              <div className="text-lg font-semibold text-gray-900">Premium</div>
-            </div>
-            <div className="bg-gray-50 rounded-lg p-4">
-              <div className="text-sm text-gray-500 mb-1">Durability</div>
-              <div className="text-lg font-semibold text-gray-900">5+ Years</div>
-            </div>
-            <div className="bg-gray-50 rounded-lg p-4">
-              <div className="text-sm text-gray-500 mb-1"> Human Impact</div>
-              <div className="text-lg font-semibold text-gray-900">Positive</div>
-            </div>
-          </div>
-
-          {/* Quick Stats */}
-          <div className="flex items-center justify-between text-sm text-gray-500 border-t border-gray-100 pt-4">
-            <span>Made in Italy</span>
-            <span>100% Wool</span>
-            <span>Fully Lined</span>
-          </div>
-        </div>
-      </div>
+{/* Hero Section */}
+<section
+  className="relative flex flex-col items-center justify-start min-h-screen px-4 pt-8"
+  style={{ backgroundColor: BACKGROUND, color: TEXT }}
+>
+  <FadeInSection className="w-full">
+    <div className="max-w-4xl mx-auto text-center mb-8">
+      <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-[#FF1FB2]">Are your clothes <span className="relative inline-block">lying<span className="absolute inset-0 border-2 border-[#FFF233] rounded-full -m-2 transform -rotate-6"></span></span> to you?</h1>
+      <p className="text-lg md:text-xl text-[#1A1A1A]">
+        Buy less. Choose better. Know the truth.
+      </p>
     </div>
+  </FadeInSection>
 
-    {/* Call to Action Button */}
-    <div className="text-center mt-16">
-      <button className="px-8 py-4 bg-white border-2 border-[#7079a9] text-[#7079a9] rounded-lg font-medium hover:bg-[#7079a9] hover:text-white transition-colors">
-        🔍 Try Your First Scan
+  {/* Rotate Image */}
+  <div className="w-full max-w-xs mx-auto mb-8">
+    <div className="relative">
+      <Image
+        src={heroImages[currentHeroImageIndex]}
+        alt="CIRA Analysis"
+        className="w-full h-auto transition-opacity duration-500 ease-in-out"
+        width={500}
+        height={500}
+      />
+    </div>
+  </div>
+
+  {/* Search Section */}
+  <div className="w-full max-w-2xl mx-auto">
+    <div className="flex flex-col md:flex-row gap-4 items-center justify-center mb-4">
+      <input
+        type="url"
+        placeholder="Paste any shopping link"
+        className="w-full md:w-2/3 px-6 py-4 rounded-lg border-2 bg-transparent focus:outline-none focus:ring-2"
+        style={{
+          borderColor: PRIMARY,
+          color: TEXT,
+          backgroundColor: "transparent",
+        }}
+        value={scanUrl}
+        onChange={(e) => setScanUrl(e.target.value)}
+      />
+      <button
+        className={`w-full md:w-auto px-8 py-4 border-2 rounded-lg font-medium transition-all duration-300 hover:text-white hover:bg-[${PRIMARY}] relative z-10`}
+        style={{
+          borderColor: PRIMARY,
+          color: TEXT,
+          backgroundColor: "transparent"
+        }}
+        onClick={handleScan}
+      >
+        🔍 Scan for Truth
       </button>
     </div>
+    <p className="text-sm text-center" style={{ color: TEXT }}>
+      Instantly see the real quality, construction, and impact behind every
+      piece.
+    </p>
   </div>
 </section>
+
+     
 
 
       {/* Why CIRA Section */}
@@ -496,165 +423,351 @@ Are your clothes lying to you?</h1>
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section id="cta" className="relative w-full min-h-[70vh] flex flex-col items-center justify-center mt-36">
-        <div className="relative z-10 flex flex-col items-center text-center px-4 py-20">
-        <h2 className="text-3xl max-w-xl sm:text-4xl font-normal text-[#1a1a1a] mb-6">
-  You deserve better than the <span className="font-bold">polyester pandemic.</span>
-</h2>          <p className="text-lg text-[#1a1a1a]/80 mb-16 max-w-6xl -mt-4">
-            Paste any shopping link.
-            See what it&apos;s really made of.
-          </p>
-          <button
-            className="px-10 py-4 bg-transparent border-2 border-[#A8B2EA] text-[#2c366e] rounded-full text-xl font-medium hover:bg-[#A8B2EA] hover:text-white transition-all duration-200"
-            onClick={handleWaitlistClick}
+            {/* How It Works Section */}
+      <section
+        id="how-it-works"
+        className="relative w-full py-24 px-4 flex flex-col items-center justify-start min-h-[160vh]"
+        style={{ backgroundColor: BACKGROUND, color: TEXT }}
+      >
+        <div className="max-w-5xl w-full">
+          <h2
+            className="text-2xl md:text-3xl font-semibold mb-24 text-center"
+            style={{ color: TEXT }}
           >
-            🔍 Reveal the Truth
-          </button>
+            We show you what the tag <span className="relative inline-block">
+              {/* Rotated yellow circle */}
+              <span className="absolute -inset-1 border-2 border-yellow-300 rounded-full transform rotate-12" style={{ opacity: 0.6 }} />
+              <span className="relative text-[#FF1493]">won&apos;t</span>
+            </span>.
+          </h2>
+      
+          {/* 3 Steps */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+            {[
+              {
+                number: "01",
+                title: "Discover",
+                description:
+                  "Browse curated clothing from trusted, verified brands — filtered by quality, ethics, and values",
+              },
+              {
+                number: "02",
+                title: "Learn",
+                description:
+                  "See the real quality score, construction details, and impact assessment of each item you find with our CIRA Report",
+              },
+              {
+                number: "03",
+                title: "Shop Smarter",
+                description:
+                  "Save your favorites, earn rewards, and feel confident in what you&apos;re buying and why it matters",
+              },
+            ].map((step, i) => (
+              <div
+                key={i}
+                className="relative bg-white p-6 rounded-lg transition-all duration-300 hover:transform hover:scale-105"
+                style={{
+                  boxShadow: '0 4px 20px -2px rgba(255, 242, 51, 0.5)',
+                }}
+      >
+                <span
+                  className="absolute -top-6 left-6 text-4xl font-bold"
+                  style={{ color: `${PRIMARY}95` }} // 80% opacity
+                >
+                  {step.number}
+                </span>
+                <h3 className="text-xl font-semibold mb-4">{step.title}</h3>
+                <p>{step.description}</p>
+              </div>
+            ))}
+          </div>
+      
+          {/* Example Report */}
+          <div className="max-w-4xl w-full mx-auto grid md:grid-cols-2 gap-8 items-start mt-16">
+            <div className="relative">
+              <Image
+                src="/blazer.png"
+                alt="CIRA Analysis"
+                className="w-full h-auto rounded-lg"
+                width={500}
+                height={500}
+              />
+            </div>
+            <div
+              className="rounded-xl shadow-lg p-8"
+              style={{ backgroundColor: "white", color: TEXT }}
+            >
+              <div className="flex items-center justify-between mb-8">
+                <div>
+                  <h3 className="text-lg font-medium">Cream Wool Blazer</h3>
+                  <p className="text-sm" style={{ color: `${TEXT}80` }}>
+                    Analyzed 2 minutes ago
+                  </p>
+                </div>
+                <span
+                  className="px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1"
+                  style={{
+                    backgroundColor: `${PRIMARY}20`, // 20% opacity
+                    color: PRIMARY,
+                  }}
+                >
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  Verified from Zara
+                </span>
+              </div>
+      
+              <div className="space-y-8">
+                {/* Overall Score */}
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-medium" style={{ color: `${TEXT}80` }}>
+                      Overall Score
+                    </span>
+                    <span className="text-lg font-semibold" style={{ color: PRIMARY }}>
+                      83%
+                    </span>
+                  </div>
+                  <FadeInSection>
+                    {({ isInView }) => (
+                      <div className="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
+                        <div
+                          className="h-3 rounded-full transition-all duration-[1500ms] ease-out-slow"
+                          style={{ 
+                            backgroundColor: PRIMARY,
+                            width: isInView ? '83%' : '0%',
+                            transitionDelay: '200ms'
+                          }}
+                        />
+                      </div>
+                    )}
+                  </FadeInSection>
+                </div>
+      
+                {/* Metrics Grid */}
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    { label: "Quality", value: "Excellent" },
+                    { label: "Construction", value: "Premium" },
+                    { label: "Durability", value: "5+ Years" },
+                    { label: "Human Impact", value: "Positive" },
+                  ].map((metric, i) => (
+                    <div
+                      key={i}
+                      className="rounded-lg p-4"
+                      style={{ backgroundColor: "white" }}
+                    >
+                      <div
+                        className="text-sm mb-1"
+                        style={{ color: `${TEXT}80` }}
+                      >
+                        {metric.label}
+                      </div>
+                      <div className="text-lg font-semibold">{metric.value}</div>
+                    </div>
+                  ))}
+                </div>
+      
+                {/* Quick Stats */}
+                <div
+                  className="flex items-center justify-between text-sm border-t pt-4"
+                  style={{ borderColor: `${TEXT}20`, color: `${TEXT}80` }}
+                >
+                  <span>Made in Italy</span>
+                  <span>100% Wool</span>
+                  <span>Fully Lined</span>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          {/* Call to Action Button */}
+          <div className="text-center mt-16">
+            <button
+              className="px-8 py-4 border-2 rounded-lg font-medium transition-colors hover:text-white hover:bg-[${PRIMARY}]"
+              style={{
+                borderColor: PRIMARY,
+                color: PRIMARY,
+                backgroundColor: "transparent",
+              }}
+              onClick={() => {
+                /* Handle action */
+              }}
+            >
+              🔍 Try Your First Scan
+            </button>
+          </div>
         </div>
       </section>
 
+      {/* Final CTA Section */}
+<section
+  id="cta"
+  className="relative w-full min-h-[70vh] flex flex-col items-center justify-center mt-20"
+  style={{ backgroundColor: '#ffffff', color: TEXT }}
+>
+  {/* Bottom CTA Gradient */}
+  <div 
+    className="absolute bottom-0 left-0 right-0 h-96 pointer-events-none pb-12" 
+    style={{ 
+      background: YellowGradient.bottom,
+      opacity: 0.6,
+      marginTop: '20px'
+    }} 
+  />
+  <FadeInSection>
+    <div className="relative z-10 flex flex-col items-center text-center px-4 py-40 mb-20">
+      <h2
+        className="text-3xl max-w-xl sm:text-4xl font-normal mb-10"
+        style={{ color: TEXT }}
+      >
+        You deserve better than the{" "}
+        <span className="font-bold" style={{ color: PRIMARY }}>
+          polyester pandemic.
+        </span>
+      </h2>
+      <p
+        className="text-lg mb-16 max-w-6xl -mt-4"
+        style={{ color: `${TEXT}CC` }} // 80% opacity
+      >
+        Paste any shopping link. See what it&apos;s really made of.
+      </p>
+      <button
+        className="px-10 py-4 border-2 rounded-full text-xl font-medium transition-all duration-200 hover:bg-[#FF1493] hover:text-white hover:border-[#FF1493]"
+        style={{
+          borderColor: PRIMARY,
+          color: PRIMARY,
+          backgroundColor: "transparent"
+        }}
+        onClick={handleWaitlistClick}
+      >
+        🔍 Join the waitlist
+      </button>
+    </div>
+  </FadeInSection>
+</section>
+
       {/* Modal Popup */}
-      {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm transition-opacity duration-300 animate-fade-in">
-          <div className="relative bg-white/90 rounded-3xl shadow-2xl p-8 w-full max-w-sm border border-[#e6e0f8] scale-95 opacity-0 animate-modal-in">
-            <button
-              className="absolute top-4 right-4 text-2xl text-[#A8B2EA] hover:text-[#d95d4b] transition-transform duration-300 focus:outline-none animate-spin-on-close"
-              onClick={() => setShowModal(false)}
-              aria-label="Close"
-              type="button"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <h3 className="text-2xl font-semibold mb-4 text-center text-[#A8B2EA] tracking-tight" style={{fontFamily: 'var(--font-nng, Inter, Arial, sans-serif)'}}>Join the Waitlist</h3>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-              <input
-                type="url"
-                required
-                placeholder="Paste any shopping link"
-                className="border border-[#e6e0f8] rounded-lg px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-[#A8B2EA]/40 transition"
-                value={scanUrl}
-                onChange={(e) => setScanUrl(e.target.value)}
-              />
-              <button
-                type="submit"
-                className="bg-gradient-to-r from-[#A8B2EA] to-[#d95d4b] text-white rounded-full px-4 py-2 font-medium shadow hover:scale-105 hover:shadow-lg transition-all duration-200"
-                disabled={loading}
-              >
-                {loading ? "Joining..." : "Join"}
-              </button>
-            </form>
-            {message && <div className="mt-4 text-center text-sm text-[#A8B2EA]">{message}</div>}
-          </div>
-          <style jsx global>{`
-            @keyframes modal-in {
-              0% { opacity: 0; transform: scale(0.95); }
-              100% { opacity: 1; transform: scale(1); }
-            }
-            .animate-modal-in {
-              animation: modal-in 0.3s cubic-bezier(0.4,0,0.2,1) forwards;
-            }
-            @keyframes spin-on-close {
-              0% { transform: rotate(0deg); }
-              100% { transform: rotate(180deg); }
-            }
-            .animate-spin-on-close:active {
-              animation: spin-on-close 0.4s cubic-bezier(0.4,0,0.2,1);
-            }
-            @keyframes fade-in {
-              from { opacity: 0; }
-              to { opacity: 1; }
-            }
-            .animate-fade-in {
-              animation: fade-in 0.3s cubic-bezier(0.4,0,0.2,1);
-            }
-            .grid-background {
-              background-image: 
-                linear-gradient(to right, rgba(59, 59, 250, 0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(59, 59, 250, 0.05) 1px, transparent 1px);
-              background-size: 24px 24px;
-              background-position: center;
-            }
-
-            .image-container {
-              position: relative;
-              overflow: hidden;
-            }
-
-            .glitch-image {
-              animation: reveal 2s ease-out forwards;
-              filter: blur(20px);
-              transform: scale(1.05);
-            }
-
-            @keyframes reveal {
-              0% {
-                filter: blur(20px);
-                transform: scale(1.05);
-              }
-              100% {
-                filter: blur(0);
-                transform: scale(1);
-              }
-            }
-
-            .glitch-container {
-              mix-blend-mode: screen;
-            }
-
-            .glitch-pixel {
-              position: absolute;
-              background: #A8B2EA;
-              border-radius: 1px;
-              animation: glitch 4s ease-in-out infinite;
-            }
-
-            .glitch-overlay {
-              position: absolute;
-              inset: -10px;
-              background: radial-gradient(
-                circle at center,
-                transparent 30%,
-                rgba(59, 59, 250, 0.03) 70%,
-                rgba(59, 59, 250, 0.05) 100%
-              );
-              pointer-events: none;
-              mix-blend-mode: multiply;
-            }
-
-            @keyframes glitch {
-              0%, 100% {
-                transform: translate(0, 0) scale(1);
-                opacity: 0.3;
-              }
-              25% {
-                transform: translate(4px, -4px) scale(1.02);
-                opacity: 0.5;
-                background: #d95d4b;
-              }
-              75% {
-                transform: translate(-4px, 4px) scale(0.98);
-                opacity: 0.4;
-                background: #e6a07e;
-              }
-            }
-
-            /* Update button styles to be more minimal */
-            button {
-              background: transparent;
-              border: 1px solid #A8B2EA;
-              color: #A8B2EA;
-              transition: all 0.2s ease;
-            }
-
-            button:hover {
-              background: #A8B2EA;
-              border-color: #A8B2EA;
-              color: black;
-            }
-          `}</style>
+{showModal && (
+  <div
+    className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm transition-opacity duration-300 animate-fade-in"
+    style={{ backgroundColor: `${TEXT}66` }} // 40% opacity
+  >
+    <div
+      className="relative rounded-3xl shadow-2xl p-8 w-full max-w-sm border scale-95 opacity-0 animate-modal-in"
+      style={{
+        backgroundColor: `${BACKGROUND}E6`, // 90% opacity
+        borderColor: `${ACCENT}33`, // 20% opacity
+      }}
+    >
+      <button
+        className="absolute top-4 right-4 text-2xl transition-all duration-300 focus:outline-none animate-spin-on-close hover:text-[#FF1493]"
+        style={{ color: PRIMARY }}
+        onClick={() => setShowModal(false)}
+        aria-label="Close"
+        type="button"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h3
+        className="text-2xl font-semibold mb-4 text-center tracking-tight"
+        style={{ color: PRIMARY, fontFamily: "var(--font-nng, Inter, Arial, sans-serif)" }}
+      >
+        Join the Waitlist
+      </h3>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <input
+          type="email"
+          required
+          placeholder="Enter your email"
+          className="rounded-lg px-4 py-2 text-base focus:outline-none focus:ring-2 transition"
+          style={{
+            borderColor: `${PRIMARY}33`, // 20% opacity
+            color: TEXT,
+            backgroundColor: "transparent",
+            boxShadow: `0 0 0 2px ${PRIMARY}66`, // 40% opacity
+          }}
+          value={scanUrl}
+          onChange={(e) => setScanUrl(e.target.value)}
+        />
+        <button
+          type="submit"
+          className="rounded-full px-4 py-2 font-medium shadow transition-all duration-200 bg-[#4a4a4a] text-white hover:bg-[#FF1493] hover:scale-105 hover:shadow-lg"
+          disabled={loading}
+        >
+          {loading ? "Joining..." : "Join"}
+        </button>
+      </form>
+      {message && (
+        <div
+          className="mt-4 text-center text-sm"
+          style={{ color: PRIMARY }}
+        >
+          {message}
         </div>
       )}
+    </div>
+    <style jsx global>{`
+      @keyframes modal-in {
+        0% {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .animate-modal-in {
+        animation: modal-in 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+      @keyframes spin-on-close {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(180deg);
+        }
+      }
+      .animate-spin-on-close:active {
+        animation: spin-on-close 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .animate-fade-in {
+        animation: fade-in 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      @keyframes progress-load {
+        from {
+          width: 0%;
+        }
+        to {
+          width: 60%;
+        }
+      }
+      .animate-progress-load {
+        animation: progress-load 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+    `}</style>
+  </div>
+)}
     </div>
   );
 }
