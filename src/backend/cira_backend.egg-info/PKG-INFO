@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: cira-backend
+Version: 0.1.0
+Requires-Dist: fastapi
+Requires-Dist: uvicorn
+Requires-Dist: python-dotenv
+Requires-Dist: requests
+Requires-Dist: beautifulsoup4
+Requires-Dist: slowapi
+Requires-Dist: fake-useragent
+Requires-Dist: selenium
+Requires-Dist: free-proxy
+Requires-Dist: redis
+Requires-Dist: aiohttp
+Requires-Dist: retrying
+Requires-Dist: webdriver-manager

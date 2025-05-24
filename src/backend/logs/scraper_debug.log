@@ -1,0 +1,309 @@
+Fetching: https://www.zara.com/us/en/pleated-elastic-waist-pants-p08372134.html?v1=452735301&v2=2546081
+Fetched HTML length: 1966
+Exception: Tag.find() got multiple values for argument 'name'
+Traceback (most recent call last):
+  File "/Users/taliak/Desktop/cira.web/src/backend/debug_scraper.py", line 55, in main
+    data = await scraper.extract_data(soup, url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/Desktop/cira.web/src/backend/scrapers/generic_scraper.py", line 40, in extract_data
+    description = self._extract_description(soup, is_zara)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/Desktop/cira.web/src/backend/scrapers/generic_scraper.py", line 392, in _extract_description
+    meta_desc = soup.find("meta", property="og:description") or soup.find("meta", name="description")
+                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Tag.find() got multiple values for argument 'name'
+
+Fetching: https://www.zara.com/us/en/pleated-elastic-waist-pants-p08372134.html?v1=452735301&v2=2546081
+Fetched HTML length: 1966
+Exception: Tag.find() got multiple values for argument 'name'
+Traceback (most recent call last):
+  File "/Users/taliak/Desktop/cira.web/src/backend/debug_scraper.py", line 55, in main
+    data = await scraper.extract_data(soup, url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/Desktop/cira.web/src/backend/scrapers/generic_scraper.py", line 43, in extract_data
+    title = self._extract_title(soup, is_zara)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/Desktop/cira.web/src/backend/scrapers/generic_scraper.py", line 85, in _extract_title
+    meta_title = soup.find("meta", property="og:title") or soup.find("meta", name="title")
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Tag.find() got multiple values for argument 'name'
+
+Fetching: https://www.zara.com/us/en/pleated-elastic-waist-pants-p08372134.html?v1=452735301&v2=2546081
+Trying HTTP request first...
+Fetched HTML length: 1966
+Exception: Tag.find() got multiple values for argument 'name'
+Traceback (most recent call last):
+  File "/Users/taliak/Desktop/cira.web/src/backend/debug_scraper.py", line 84, in main
+    data = await scraper.extract_data(soup, url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/Desktop/cira.web/src/backend/scrapers/generic_scraper.py", line 43, in extract_data
+    title = self._extract_title(soup, is_zara)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/Desktop/cira.web/src/backend/scrapers/generic_scraper.py", line 85, in _extract_title
+    meta_title = soup.find("meta", property="og:title") or soup.find("meta", name="title")
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Tag.find() got multiple values for argument 'name'
+
+Fetching: https://www.zara.com/us/en/pleated-elastic-waist-pants-p08372134.html?v1=452735301&v2=2546081
+Trying HTTP request first...
+Got redirect page, falling back to Playwright...
+HTTP request failed: Redirect detected
+HTTP request failed: Redirect detected
+Falling back to Playwright...
+Exception: invalid state
+Traceback (most recent call last):
+  File "/Users/taliak/Desktop/cira.web/src/backend/debug_scraper.py", line 83, in fetch_page
+    return await fetch_with_http(url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/Desktop/cira.web/src/backend/debug_scraper.py", line 54, in fetch_with_http
+    raise Exception("Redirect detected")
+Exception: Redirect detected
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/taliak/Desktop/cira.web/src/backend/debug_scraper.py", line 71, in fetch_with_playwright
+    page = await context.new_page()
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/async_api/_generated.py", line 13113, in new_page
+    return mapping.from_impl(await self._impl_obj.new_page())
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/_impl/_browser_context.py", line 298, in new_page
+    return from_channel(await self._channel.send("newPage"))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/_impl/_connection.py", line 63, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/_impl/_connection.py", line 495, in wrap_api_call
+    return await cb()
+           ^^^^^^^^^^
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/_impl/_connection.py", line 101, in inner_send
+    result = next(iter(done)).result()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+Browser logs:
+
+<launching> /Users/taliak/Library/Caches/ms-playwright/chromium-1097/chrome-mac/Chromium.app/Contents/MacOS/Chromium --disable-field-trial-config --disable-background-networking --enable-features=NetworkService,NetworkServiceInProcess --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=ImprovedCookieControls,LazyFrameLoading,GlobalMediaControls,DestroyProfileOnBrowserClose,MediaRouter,DialMediaRouteProvider,AcceptCHFrame,AutoExpandDetailsElement,CertificateTransparencyComponentUpdater,AvoidUnnecessaryBeforeUnloadCheckSync,Translate,HttpsUpgrades,PaintHolding --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --enable-automation --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --enable-use-zoom-for-dsf=false --no-sandbox --user-data-dir=/var/folders/kn/wkzbyxr56xz9fr2y8_2s_8dw0000gn/T/playwright_chromiumdev_profile-FzNC4F --remote-debugging-pipe --no-startup-window
+<launched> pid=7483
+[pid=7483][err] [7483:259:0522/194229.207088:ERROR:policy_logger.cc(156)] :components/enterprise/browser/controller/chrome_browser_cloud_management_controller.cc(161) Cloud management controller initialization aborted as CBCM is not enabled. Please use the `--enable-chrome-browser-cloud-management` command line flag to enable it if you are not using the official Google Chrome build.
+[pid=7483][err] Received signal 11 SEGV_ACCERR 000100000008
+[pid=7483][err]  [0x00012493e4c4]
+[pid=7483][err]  [0x000124932cc4]
+[pid=7483][err]  [0x00012493e414]
+[pid=7483][err]  [0x000192bcede4]
+[pid=7483][err]  [0x0001a3cf1984]
+[pid=7483][err]  [0x0001a3b785d8]
+[pid=7483][err]  [0x0001a3d139f8]
+[pid=7483][err]  [0x0001a3d14a4c]
+[pid=7483][err]  [0x0001941a7360]
+[pid=7483][err]  [0x000194230d9c]
+[pid=7483][err]  [0x0001943e9af4]
+[pid=7483][err]  [0x0001943e99b8]
+[pid=7483][err]  [0x0001943ed8bc]
+[pid=7483][err]  [0x000194329210]
+[pid=7483][err]  [0x000192c4d920]
+[pid=7483][err]  [0x0001930fd8a0]
+[pid=7483][err]  [0x0001930fd2b0]
+[pid=7483][err]  [0x0001930faa1c]
+[pid=7483][err]  [0x0001995d2018]
+[pid=7483][err]  [0x0001995d084c]
+[pid=7483][err]  [0x00019756ca88]
+[pid=7483][err]  [0x00019756d6f8]
+[pid=7483][err]  [0x00019756c770]
+[pid=7483][err]  [0x00019756fc48]
+[pid=7483][err]  [0x0001967c3c48]
+[pid=7483][err]  [0x0001967c1a9c]
+[pid=7483][err]  [0x0001967c15d0]
+[pid=7483][err]  [0x000124947568]
+[pid=7483][err]  [0x0001248a880c]
+[pid=7483][err]  [0x0001249042b4]
+[pid=7483][err]  [0x0001239709c8]
+[pid=7483][err]  [0x000123d84eb4]
+[pid=7483][err]  [0x000123d85c1c]
+[pid=7483][err]  [0x000123d8424c]
+[pid=7483][err]  [0x000123d84640]
+[pid=7483][err]  [0x000120804df0]
+[pid=7483][err]  [0x0001048fcaac]
+[pid=7483][err]  [0x000192818274]
+[pid=7483][err] [end of stack trace]
+[pid=7483][err] Received signal 11 SEGV_ACCERR 000100000008
+[pid=7483][err]  [0x000116e5a4c4]
+[pid=7483][err]  [0x000116e4ecc4]
+[pid=7483][err]  [0x000116e5a414]
+[pid=7483][err]  [0x000192bcede4]
+[pid=7483][err]  [0x0001a3cf1984]
+[pid=7483][err]  [0x0001a3b785d8]
+[pid=7483][err]  [0x0001a3d139f8]
+[pid=7483][err]  [0x0001a3d14a4c]
+[pid=7483][err]  [0x0001927cfd94]
+[pid=7483][err]  [0x0001927cc138]
+[pid=7483][err]  [0x000116e60d2c]
+[pid=7483][err]  [0x000116e62bec]
+[pid=7483][err]  [0x000116e5ec10]
+[pid=7483][err]  [0x000116e62370]
+[pid=7483][err]  [0x000192c808a4]
+[pid=7483][err]  [0x000192c80838]
+[pid=7483][err]  [0x000192c8059c]
+[pid=7483][err]  [0x000192c7f138]
+[pid=7483][err]  [0x000192c7e734]
+[pid=7483][err]  [0x00019e1ed530]
+[pid=7483][err]  [0x00019e1f3348]
+[pid=7483][err]  [0x00019e1f3508]
+[pid=7483][err]  [0x0001967f6848]
+[pid=7483][err]  [0x00019715cc24]
+[pid=7483][err]  [0x0001168fb050]
+[pid=7483][err]  [0x000116e5ec10]
+[pid=7483][err]  [0x0001168faf98]
+[pid=7483][err]  [0x0001967e9874]
+[pid=7483][err]  [0x000116e63278]
+[pid=7483][err]  [0x000116e61d10]
+[pid=7483][err]  [0x000116e1b2e8]
+[pid=7483][err]  [0x000116deb488]
+[pid=7483][err]  [0x000114f84bd0]
+[pid=7483][err]  [0x000114f8639c]
+[pid=7483][err]  [0x000114f82118]
+[pid=7483][err]  [0x0001162a0c58]
+[pid=7483][err]  [0x0001162a2124]
+[pid=7483][err]  [0x0001162a1c48]
+[pid=7483][err]  [0x0001162a024c]
+[pid=7483][err]  [0x0001162a0640]
+[pid=7483][err]  [0x000112d20df0]
+[pid=7483][err]  [0x000100610938]
+[pid=7483][err]  [0x000192818274]
+[pid=7483][err] [end of stack trace]
+[pid=7483][err] [0522/194229.936109:WARNING:crash_report_exception_handler.cc(235)] UniversalExceptionRaise: (os/kern) failure (5)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/taliak/Desktop/cira.web/src/backend/debug_scraper.py", line 77, in fetch_with_playwright
+    await browser.close()
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/async_api/_generated.py", line 14581, in close
+    return mapping.from_maybe_impl(await self._impl_obj.close(reason=reason))
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/_impl/_browser.py", line 189, in close
+    raise e
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/_impl/_browser.py", line 186, in close
+    await self._channel.send("close", {"reason": reason})
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/_impl/_connection.py", line 63, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/_impl/_connection.py", line 495, in wrap_api_call
+    return await cb()
+           ^^^^^^^^^^
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/_impl/_connection.py", line 101, in inner_send
+    result = next(iter(done)).result()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+Exception: Connection closed while reading from the driver
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/taliak/Desktop/cira.web/src/backend/debug_scraper.py", line 93, in main
+    html = await fetch_page(url)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/Desktop/cira.web/src/backend/debug_scraper.py", line 87, in fetch_page
+    return await fetch_with_playwright(url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/Desktop/cira.web/src/backend/debug_scraper.py", line 64, in fetch_with_playwright
+    async with async_playwright() as p:
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/async_api/_context_manager.py", line 58, in __aexit__
+    await self._connection.stop_async()
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/_impl/_connection.py", line 289, in stop_async
+    self.cleanup()
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/_impl/_connection.py", line 300, in cleanup
+    callback.future.set_exception(self._closed_error)
+asyncio.exceptions.InvalidStateError: invalid state
+
+Fetching: https://www.zara.com/us/en/pleated-elastic-waist-pants-p08372134.html?v1=452735301&v2=2546081
+Trying HTTP request first...
+Got redirect page, falling back to Playwright...
+HTTP request failed: Redirect detected
+HTTP request failed: Redirect detected
+Falling back to Playwright...
+Playwright error: Target page, context or browser has been closed
+Playwright also failed: Target page, context or browser has been closed
+Exception: Target page, context or browser has been closed
+Traceback (most recent call last):
+  File "/Users/taliak/Desktop/cira.web/src/backend/debug_scraper.py", line 145, in fetch_page
+    return await fetch_with_http(url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/Desktop/cira.web/src/backend/debug_scraper.py", line 54, in fetch_with_http
+    raise Exception("Redirect detected")
+Exception: Redirect detected
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/taliak/Desktop/cira.web/src/backend/debug_scraper.py", line 159, in main
+    html = await fetch_page(url)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/Desktop/cira.web/src/backend/debug_scraper.py", line 150, in fetch_page
+    return await fetch_with_playwright(url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/Desktop/cira.web/src/backend/debug_scraper.py", line 104, in fetch_with_playwright
+    page = await context.new_page()
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/async_api/_generated.py", line 13113, in new_page
+    return mapping.from_impl(await self._impl_obj.new_page())
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/_impl/_browser_context.py", line 298, in new_page
+    return from_channel(await self._channel.send("newPage"))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/_impl/_connection.py", line 63, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/_impl/_connection.py", line 495, in wrap_api_call
+    return await cb()
+           ^^^^^^^^^^
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/_impl/_connection.py", line 101, in inner_send
+    result = next(iter(done)).result()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+
+Fetching: https://www.zara.com/us/en/pleated-elastic-waist-pants-p08372134.html?v1=452735301&v2=2546081
+Trying HTTP request first...
+Got redirect page, falling back to Playwright...
+HTTP request failed: Redirect detected
+HTTP request failed: Redirect detected
+Falling back to Playwright...
+Playwright error: Target page, context or browser has been closed
+Playwright also failed: Target page, context or browser has been closed
+Exception: Target page, context or browser has been closed
+Traceback (most recent call last):
+  File "/Users/taliak/Desktop/cira.web/src/backend/debug_scraper.py", line 116, in fetch_page
+    return await fetch_with_http(url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/Desktop/cira.web/src/backend/debug_scraper.py", line 54, in fetch_with_http
+    raise Exception("Redirect detected")
+Exception: Redirect detected
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/taliak/Desktop/cira.web/src/backend/debug_scraper.py", line 130, in main
+    html = await fetch_page(url)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/Desktop/cira.web/src/backend/debug_scraper.py", line 121, in fetch_page
+    return await fetch_with_playwright(url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/Desktop/cira.web/src/backend/debug_scraper.py", line 81, in fetch_with_playwright
+    page = await context.new_page()
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/async_api/_generated.py", line 13113, in new_page
+    return mapping.from_impl(await self._impl_obj.new_page())
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/_impl/_browser_context.py", line 298, in new_page
+    return from_channel(await self._channel.send("newPage"))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/_impl/_connection.py", line 63, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/_impl/_connection.py", line 495, in wrap_api_call
+    return await cb()
+           ^^^^^^^^^^
+  File "/Users/taliak/.pyenv/versions/3.11.5/lib/python3.11/site-packages/playwright/_impl/_connection.py", line 101, in inner_send
+    result = next(iter(done)).result()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+
