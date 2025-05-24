@@ -103,7 +103,7 @@ export async function POST(request: Request) {
         url,
         brand: analysis.brand,
         overall_score: analysis.overallScore,
-        quality: qualityEnum, // Use column names from schema list
+        quality: qualityEnum,
         construction: constructionEnum,
         durability: durabilityEnum,
         ethics: ethicsEnum,
