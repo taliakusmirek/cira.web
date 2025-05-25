@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Rubik_Bubbles } from 'next/font/google';
+import Footer from './Footer';
+import { useRouter } from 'next/navigation';
 
 const rubikBubbles = Rubik_Bubbles({ 
   weight: '400',
@@ -368,12 +370,15 @@ export const LandingSections: React.FC<{ onWaitlistClick: () => void }> = ({ onW
     };
   }, []);
 
+  const router = useRouter();
+
   return (
     <div className="w-full flex flex-col items-center bg-white">
       <style>{fontStyle}</style>
       {/* About Section */}
       <section 
         ref={aboutRef}
+        id="about"
         className="w-full max-w-6xl mx-auto mt-34 mb-64 flex flex-col md:flex-row items-start gap-12 py-20 px-6 md:px-0 relative mt-20"
       >
         {/* Left: Square image */}
@@ -504,7 +509,7 @@ export const LandingSections: React.FC<{ onWaitlistClick: () => void }> = ({ onW
           </div>
 
           {/* Five.jpg Image */}
-          <div className={`w-full md:w-1/2 flex items-center -ml-24 md:-ml-48 transition-opacity duration-1000 ${animateSection3 ? 'opacity-100' : 'opacity-0 invisible'}`} style={{ transitionDelay: '0.5s' }}> {/* Added transition and delay */}
+          <div className={`w-full md:w-1/2 flex items-center justify-center md:justify-start md:-ml-48 transition-opacity duration-1000 ${animateSection3 ? 'opacity-100' : 'opacity-0 invisible'}`} style={{ transitionDelay: '0.5s' }}> {/* Added justify-center for mobile, negative margin only on md+ */}
             <Image src="/five.jpg" alt="Shopping smarter illustration" width={200} height={200} className="object-cover rounded-lg" />
           </div>
         </div>
@@ -536,48 +541,12 @@ export const LandingSections: React.FC<{ onWaitlistClick: () => void }> = ({ onW
       </section>
 
       {/* Footer */}
-      <footer className="w-full py-8 px-4 border-t relative overflow-hidden mt-20" style={{ borderColor: PRIMARY }}> {/* Added border-top, relative, overflow-hidden, and increased top margin */}
-         {/* Upward Yellow Gradient Overlay */}
-         <div className="absolute inset-x-0 bottom-0 h-20" style={{ background: 'linear-gradient(0deg, rgba(246, 246, 64, 0.3) 0%, rgba(246, 246, 64, 0) 100%)', zIndex: 0 }}></div> {/* Changed height to h-20 */}
-
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 relative z-10"> {/* Added relative and z-10 */}
-          {/* Logo */}
-          <div className="flex items-center gap-3">
-            <Image src="/transparent.png" alt="CIRA Logo" width={40} height={40} className="rounded-full" />
-            <span className="text-xl font-bold tracking-wide" style={{ color: PRIMARY }}>CIRA</span>
-          </div>
-
-          {/* Nav Links */}
-          <nav className="flex gap-6 text-base font-medium flex-wrap justify-center">
-            <a href="#about" className="hover:underline" style={{ color: PRIMARY }}>About</a>
-            <a href="#faq" className="hover:underline" style={{ color: PRIMARY }}>FAQ</a>
-            {/* Add Contact and Privacy/Terms links if available, using placeholders for now */}
-            {/* Removed Contact, Privacy, and Terms links as requested */}
-          </nav>
-
-          {/* Copyright and Built info */}
-          <div className="text-sm text-gray-600" style={{ color: 'rgba(246, 16, 193, 0.6)' }}>
-            © 2025 CIRA, Built in Boston
-          </div>
-
-          {/* Join the Waitlist button in Footer */}
-          <button
-            className="px-6 py-3 rounded-full text-base font-bold shadow-lg border-2 transition"
-            style={{ borderColor: PRIMARY, color: PRIMARY }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.backgroundColor = PRIMARY;
-              e.currentTarget.style.color = 'white';
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.backgroundColor = 'transparent';
-              e.currentTarget.style.color = PRIMARY;
-            }}
-            onClick={onWaitlistClick}
-          >
-            Join the Waitlist →
-          </button>
-        </div>
-      </footer>
+      <Footer 
+        onWaitlistClick={onWaitlistClick}
+        showAuth={true}
+        onLoginClick={() => router.push('/signin')}
+        onSignUpClick={() => router.push('/signup')}
+      />
     </div>
   );
 }; 

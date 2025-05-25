@@ -9,9 +9,12 @@ const PRIMARY = '#F610C1';
 interface FooterProps {
   onWaitlistClick?: () => void;
   showWaitlist?: boolean;
+  onSignUpClick?: () => void;
+  onLoginClick?: () => void;
+  showAuth?: boolean;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onWaitlistClick, showWaitlist = true }) => {
+export const Footer: React.FC<FooterProps> = ({ onWaitlistClick, showWaitlist = true, onSignUpClick, onLoginClick, showAuth = true }) => {
   const router = useRouter();
 
   return (
@@ -38,24 +41,47 @@ export const Footer: React.FC<FooterProps> = ({ onWaitlistClick, showWaitlist = 
         </div>
 
         {/* Join the Waitlist button in Footer */}
-        {showWaitlist && onWaitlistClick && (
-          <button
-            className="px-6 py-3 rounded-full text-base font-bold shadow-lg border-2 transition"
-            style={{ borderColor: PRIMARY, color: PRIMARY }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.backgroundColor = PRIMARY;
-              e.currentTarget.style.color = 'white';
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.backgroundColor = 'transparent';
-              e.currentTarget.style.color = PRIMARY;
-            }}
-            onClick={onWaitlistClick}
-          >
-            Join the Waitlist →
-          </button>
-        )}
+        <div className="flex gap-4 items-center">
+          {showAuth && onLoginClick && (
+            <button
+              className="relative group font-bold text-base px-3 py-2 rounded-full text-[#F610C1] bg-transparent border-none"
+              style={{ minWidth: '72px' }}
+              onClick={onLoginClick}
+            >
+              Login
+              <span className="absolute left-0 bottom-0 w-0 h-1 transition-all duration-300 group-hover:w-full" style={{ backgroundColor: PRIMARY }}></span>
+            </button>
+          )}
+          {showAuth && onSignUpClick && (
+            <button
+              className="px-6 py-3 rounded-full text-base font-bold shadow-lg border-2 transition bg-white text-[#F610C1] border-[#F610C1] hover:bg-pink-50"
+              style={{ borderColor: PRIMARY, color: PRIMARY }}
+              onClick={onSignUpClick}
+            >
+              Sign Up
+            </button>
+          )}
+          {showWaitlist && onWaitlistClick && (
+            <button
+              className="px-6 py-3 rounded-full text-base font-bold shadow-lg border-2 transition bg-[#F610C1] text-white hover:bg-pink-700"
+              style={{ borderColor: PRIMARY, color: 'white' }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.backgroundColor = PRIMARY;
+                e.currentTarget.style.color = 'white';
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = PRIMARY;
+              }}
+              onClick={onWaitlistClick}
+            >
+              Join the waitlist
+            </button>
+          )}
+        </div>
       </div>
     </footer>
   );
-}; 
+};
+
+export default Footer; 

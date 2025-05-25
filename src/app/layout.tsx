@@ -20,7 +20,9 @@ export default function RootLayout({
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="alternate icon" type="image/png" href="/favicon.png" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className="min-h-screen bg-white">
+        <div className={inter.className}>{children}</div>
+      </body>
     </html>
   );
 }

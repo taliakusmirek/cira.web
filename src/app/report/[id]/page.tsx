@@ -16,6 +16,7 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Navigation } from '../../components/Navigation';
 import { Footer } from '../../components/Footer';
+import { useRouter } from 'next/navigation';
 
 const PRIMARY = "#F610C1";
 const ACCENT = "#F6F640";
@@ -685,6 +686,7 @@ const ReportPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [waitlistEmail, setWaitlistEmail] = useState("");
   const [message, setMessage] = useState<string | null>(null);
+  const router = useRouter();
 
   // Function to extract and format domain from URL
   const getDomainFromUrl = (url: string) => {
@@ -805,7 +807,11 @@ const ReportPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Navigation onWaitlistClick={handleWaitlistClick} />
+      <Navigation 
+        onWaitlistClick={handleWaitlistClick}
+        onLoginClick={() => router.push('/signin')}
+        onSignUpClick={() => router.push('/signup')}
+      />
       <main className="flex-1 bg-white px-4 py-8 md:px-8">
         <FadeInSection>
           <div className="max-w-4xl mx-auto">

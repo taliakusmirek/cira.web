@@ -193,7 +193,14 @@ const handleScan = async () => {
   return (
     <>
       {showLoading && <LoadingScreen onFinish={() => setShowLoading(false)} />}
-      <LandingHero scanUrl={scanUrl} setScanUrl={setScanUrl} onScan={handleScan} onWaitlistClick={handleWaitlistClick} />
+      <LandingHero 
+        scanUrl={scanUrl} 
+        setScanUrl={setScanUrl} 
+        onScan={handleScan} 
+        onWaitlistClick={handleWaitlistClick}
+        onLoginClick={() => router.push('/signin')}
+        onSignUpClick={() => router.push('/signup')}
+      />
       <LandingSections onWaitlistClick={handleWaitlistClick} />
       {showModal && (
         <div className={`fixed inset-0 flex items-center justify-center z-[1000] transition-opacity duration-500 backdrop-filter backdrop-blur-sm ${modalAnimating ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
