@@ -2,82 +2,50 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
-const PRIMARY = '#F610C1';
+const BLUE = '#0439C1';
 
-interface FooterProps {
-  onWaitlistClick?: () => void;
-  showWaitlist?: boolean;
-  onSignUpClick?: () => void;
-  onLoginClick?: () => void;
-  showAuth?: boolean;
-}
-
-export const Footer: React.FC<FooterProps> = ({ onWaitlistClick, showWaitlist = true, onSignUpClick, onLoginClick, showAuth = true }) => {
-  const router = useRouter();
-
+export const Footer: React.FC = () => {
   return (
-    <footer className="w-full py-8 px-4 border-t relative overflow-hidden mt-20" style={{ borderColor: PRIMARY }}>
-      {/* Upward Yellow Gradient Overlay */}
-      <div className="absolute inset-x-0 bottom-0 h-20" style={{ background: 'linear-gradient(0deg, rgba(246, 246, 64, 0.3) 0%, rgba(246, 246, 64, 0) 100%)', zIndex: 0 }}></div>
-
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
-        {/* Logo */}
-        <div className="flex items-center gap-3 cursor-pointer" onClick={() => router.push('/')}>
-          <Image src="/transparent.png" alt="CIRA Logo" width={40} height={40} className="rounded-full" />
-          <span className="text-xl font-bold tracking-wide" style={{ color: PRIMARY }}>CIRA</span>
+    <footer
+      className="w-full relative pt-0 pb-0 overflow-hidden"
+      style={{
+        fontFamily: "'Nordique Pro Cyrillic SemiBold', sans-serif",
+        minHeight: 100,
+        background: `url('/landscape.png') center bottom/cover no-repeat`,
+        position: 'relative',
+      }}
+    >
+      {/* Gradient overlay (bottom up, tall, covers logo and copyright) */}
+      <div style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, zIndex: 2, pointerEvents: 'none', background: `linear-gradient(180deg, rgba(4,57,193,0.0) 0%, rgba(4,57,193,0.18) 10%, ${BLUE} 90%)` }} />
+      {/* Content above gradient */}
+      <div className="relative z-10 flex flex-col items-center justify-center w-full pt-11 pb-2">
+        {/* Headline (short, not all caps) */}
+        <h2 className="text-2xl md:text-3xl font-bold leading-tight text-white text-center mb-6 mt-8" style={{ letterSpacing: '-0.5px' }}>
+          Compliance, trust, and product passports.
+        </h2>
+        {/* Nav links as pills */}
+        <div className="flex flex-wrap justify-center gap-3 mb-1">
+          <a href="#" className="px-5 py-2 rounded-full bg-white text-[#0439C1] font-semibold text-base shadow border border-[#4ED193] hover:bg-[#4ED193] hover:text-[#0439C1] transition-all" style={{ marginBottom: 4 }}>Home</a>
+          <a href="#" className="px-5 py-2 rounded-full bg-white text-[#0439C1] font-semibold text-base shadow border border-[#4ED193] hover:bg-[#4ED193] hover:text-[#0439C1] transition-all" style={{ marginBottom: 4 }}>About us</a>
+          <a href="#" className="px-5 py-2 rounded-full bg-white text-[#0439C1] font-semibold text-base shadow border border-[#4ED193] hover:bg-[#4ED193] hover:text-[#0439C1] transition-all" style={{ marginBottom: 4 }}>Changelog</a>
+          <a href="#" className="px-5 py-2 rounded-full bg-white text-[#0439C1] font-semibold text-base shadow border border-[#4ED193] hover:bg-[#4ED193] hover:text-[#0439C1] transition-all" style={{ marginBottom: 4 }}>Contact</a>
+          <a href="#" className="px-5 py-2 rounded-full bg-white text-[#0439C1] font-semibold text-base shadow border border-[#4ED193] hover:bg-[#4ED193] hover:text-[#0439C1] transition-all" style={{ marginBottom: 4 }}>Terms <span style={{ fontFamily: 'Arial, sans-serif', fontSize: '1.1em', verticalAlign: 'middle', display: 'inline', letterSpacing: 0, margin: 0, padding: 0 }}>+</span> Conditions</a>
+          <a href="#" className="px-5 py-2 rounded-full bg-white text-[#0439C1] font-semibold text-base shadow border border-[#4ED193] hover:bg-[#4ED193] hover:text-[#0439C1] transition-all" style={{ marginBottom: 4 }}>Privacy Policy</a>
         </div>
-
-        {/* Nav Links */}
-        <nav className="flex gap-6 text-base font-medium flex-wrap justify-center">
-          <a href="/#about" className="hover:underline" style={{ color: PRIMARY }}>About</a>
-          <a href="/#faq" className="hover:underline" style={{ color: PRIMARY }}>FAQ</a>
-        </nav>
-
-        {/* Copyright and Built info */}
-        <div className="text-sm text-gray-600" style={{ color: 'rgba(246, 16, 193, 0.6)' }}>
-          © 2025 CIRA, Built in Boston
+        {/* Watermark logo directly under nav buttons, above copyright */}
+        <div className="w-full flex justify-center mb-0 mt-10 pb-30">
+          <Image src="/logotransparent.png" alt="Logo watermark" width={800} height={120} style={{ width: '50%', height: 'auto', objectFit: 'contain', display: 'block', opacity: 0.3 }} />
         </div>
-
-        {/* Join the Waitlist button in Footer */}
-        <div className="flex gap-4 items-center">
-          {showAuth && onLoginClick && (
-            <button
-              className="relative group font-bold text-base px-3 py-2 rounded-full text-[#F610C1] bg-transparent border-none"
-              style={{ minWidth: '72px' }}
-              onClick={onLoginClick}
-            >
-              Login
-              <span className="absolute left-0 bottom-0 w-0 h-1 transition-all duration-300 group-hover:w-full" style={{ backgroundColor: PRIMARY }}></span>
-            </button>
-          )}
-          {showAuth && onSignUpClick && (
-            <button
-              className="px-6 py-3 rounded-full text-base font-bold shadow-lg border-2 transition bg-white text-[#F610C1] border-[#F610C1] hover:bg-pink-50"
-              style={{ borderColor: PRIMARY, color: PRIMARY }}
-              onClick={onSignUpClick}
-            >
-              Sign Up
-            </button>
-          )}
-          {showWaitlist && onWaitlistClick && (
-            <button
-              className="px-6 py-3 rounded-full text-base font-bold shadow-lg border-2 transition bg-[#F610C1] text-white hover:bg-pink-700"
-              style={{ borderColor: PRIMARY, color: 'white' }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.backgroundColor = PRIMARY;
-                e.currentTarget.style.color = 'white';
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
-                e.currentTarget.style.color = PRIMARY;
-              }}
-              onClick={onWaitlistClick}
-            >
-              Join the waitlist
-            </button>
-          )}
+        {/* Copyright directly under logo */}
+        <div className="flex flex-row justify-center items-center w-full max-w-6xl mx-auto text-BLUE text-sm opacity-90 z-10 -mt-30">
+          <span>Copyright © 2025</span>
+        </div>
+        {/* Social icons below copyright */}
+        <div className="flex flex-row justify-center gap-4 mb-4">
+          <a href="#" className="text-white hover:text-[#4ED193] transition"><i className="fab fa-instagram" /></a>
+          <a href="#" className="text-white hover:text-[#4ED193] transition"><i className="fab fa-facebook-f" /></a>
+          <a href="#" className="text-white hover:text-[#4ED193] transition"><i className="fab fa-linkedin-in" /></a>
         </div>
       </div>
     </footer>
