@@ -7,8 +7,8 @@ const notoSans = Noto_Sans({ subsets: ["latin"], variable: "--font-noto-sans" })
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk" });
 
 export const metadata: Metadata = {
-  title: "CIRA - Are your clothes lying to you?",
-  description: "Instantly see the fabric truth, construction grade, human impact score — and your wardrobe's future value.",
+  title: "CIRA – Automated EU Compliance & Digital Product Passports",
+  description: "CIRA delivers automated, secure, and scalable tools for EU ESPR 2027 compliance. Instantly generate Digital Product Passports and stay audit-ready with trusted, future-proof solutions for brands.",
 };
 
 export default function RootLayout({
