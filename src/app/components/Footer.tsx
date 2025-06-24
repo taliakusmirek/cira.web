@@ -22,7 +22,7 @@ export const Footer: React.FC = () => {
       <div className="relative z-10 flex flex-col items-center justify-center w-full pt-11 pb-2">
         {/* Headline (short, not all caps) */}
         <h2 className="text-2xl md:text-3xl font-bold leading-tight text-white text-center mb-6 mt-8" style={{ letterSpacing: '-0.5px' }}>
-          Compliance, trust, and product passports.
+        Beautiful transparency, EU-compliant. <br /> Built for trust, made to share.
         </h2>
         {/* Nav links as pills */}
         <div className="flex flex-wrap justify-center gap-3 mb-1">

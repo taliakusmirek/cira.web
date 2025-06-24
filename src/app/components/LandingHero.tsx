@@ -72,20 +72,21 @@ export const LandingHero: React.FC = () => {
           </span>
         </div>
         {/* Headline */}
-        <h1 className="text-[3.8rem] md:text-[6.2rem] lg:text-[6.2rem] font-black leading-[1.08] tracking-tight w-full mb-6" style={{ letterSpacing: '-0.03em', lineHeight: 1.08, fontWeight: 900 }}>
-          <span className="block text-[#0439C1]">Compliance,</span>
+        <h1 className="text-[3.3rem] md:text-[5.4rem] lg:text-[5.4rem] font-black leading-[1.08] tracking-tight w-full mb-6" style={{ letterSpacing: '-0.03em', lineHeight: 1.08, fontWeight: 900 }}>
+          <span className="block text-[#0439C1]">Turn compliance into</span>
           <span
   className="block text-[#4ED193] -mt-3  ml-3 tracking-widest"
   style={{ letterSpacing: '0em' }}
 >
-  simplified.
+connection.
 </span>        </h1>
         {/* Subheadline */}
         <div className="text-sm md:text-base text-[#5B6B6B] font-medium w-full max-w-2xl mb-6 mx-auto" style={{ letterSpacing: '-0.01em' }}>
-          CIRA delivers automated, future
+        CIRA helps you create beautiful, 
+
+
           <span style={{ fontFamily: 'Arial, sans-serif' }}>-</span>
-          proof EU Digital Product Passports and compliance <br /> tools that are secure, scalable, and built for trust.
-        </div>
+          on brand Digital Product Passports that showcase your materials, process, and purpose: fully EU compliant, designed to build trust.        </div>
         {/* CTA Row */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-6 w-full mb-12">
           <a
@@ -151,7 +152,9 @@ export const LandingHero: React.FC = () => {
           </h2>
           {/* Subheadline (Step 1) */}
           <div className="text-lg text-[#5B6B6B] font-medium mb-10 max-w-md">
-            Paste a product link or upload data. <br /> No setup, no dev team.
+          Upload your docs or enter details: no code, no dev team.
+We turn your raw data into a beautiful, human-readable story page.
+
           </div>
           {/* Buttons */}
           <div className="flex flex-row gap-4 mt-2">
@@ -189,8 +192,9 @@ export const LandingHero: React.FC = () => {
           </h2>
           {/* Subheadline (Step 2) */}
           <div className="text-lg text-[#5B6B6B] font-medium mb-10 max-w-md">
-            Our engine builds a full EU Digital Product Passport, instantly and accurately.
-          </div>
+          Instantly generate a shareable, EU-compliant Digital Product Passport: with your fonts, photos, and brand story built in.
+
+</div>
           {/* Buttons */}
           <div className="flex flex-row gap-4 mt-2">
             <a href="#about" className="px-7 py-3 rounded-full border-2 border-[#0439C1] text-[#0439C1] font-bold text-lg bg-white hover:bg-[#F5F6FA] transition-all" style={{ minWidth: 150, textAlign: 'center' }}>About CIRA</a>
@@ -215,8 +219,9 @@ export const LandingHero: React.FC = () => {
           </h2>
           {/* Subheadline (Step 3) */}
           <div className="text-lg text-[#5B6B6B] font-medium mb-10 max-w-md">
-            With one click, add a QR code or widget to your site. Instant trust, right where it matters.
-          </div>
+          Embed a QR code or widget to link every product to its story: from raw materials to maker insights to recyclability.
+
+</div>
           {/* Buttons */}
           <div className="flex flex-row gap-4 mt-2">
             <a href="#about" className="px-7 py-3 rounded-full border-2 border-[#0439C1] text-[#0439C1] font-bold text-lg bg-white hover:bg-[#F5F6FA] transition-all" style={{ minWidth: 150, textAlign: 'center' }}>About CIRA</a>
