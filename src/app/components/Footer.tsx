@@ -22,16 +22,18 @@ export const Footer: React.FC = () => {
       <div className="relative z-10 flex flex-col items-center justify-center w-full pt-11 pb-2">
         {/* Headline (short, not all caps) */}
         <h2 className="text-2xl md:text-3xl font-bold leading-tight text-white text-center mb-6 mt-8" style={{ letterSpacing: '-0.5px' }}>
-        Beautiful transparency, EU-compliant. <br /> Built for trust, made to share.
+          Beautiful transparency, made simple.
         </h2>
         {/* Nav links as pills */}
         <div className="flex flex-wrap justify-center gap-3 mb-1">
           <a href="#" className="px-5 py-2 rounded-full bg-white text-[#0439C1] font-semibold text-base shadow border border-[#4ED193] hover:bg-[#4ED193] hover:text-[#0439C1] transition-all" style={{ marginBottom: 4 }}>Home</a>
-          <a href="#" className="px-5 py-2 rounded-full bg-white text-[#0439C1] font-semibold text-base shadow border border-[#4ED193] hover:bg-[#4ED193] hover:text-[#0439C1] transition-all" style={{ marginBottom: 4 }}>About us</a>
+          <a href="#" className="px-5 py-2 rounded-full bg-white text-[#0439C1] font-semibold text-base shadow border border-[#4ED193] hover:bg-[#4ED193] hover:text-[#0439C1] transition-all" style={{ marginBottom: 4 }}>About</a>
+          <a href="#" className="px-5 py-2 rounded-full bg-white text-[#0439C1] font-semibold text-base shadow border border-[#4ED193] hover:bg-[#4ED193] hover:text-[#0439C1] transition-all" style={{ marginBottom: 4 }}>Solutions</a>
+          <a href="#" className="px-5 py-2 rounded-full bg-white text-[#0439C1] font-semibold text-base shadow border border-[#4ED193] hover:bg-[#4ED193] hover:text-[#0439C1] transition-all" style={{ marginBottom: 4 }}>Industries</a>
           <a href="#" className="px-5 py-2 rounded-full bg-white text-[#0439C1] font-semibold text-base shadow border border-[#4ED193] hover:bg-[#4ED193] hover:text-[#0439C1] transition-all" style={{ marginBottom: 4 }}>Changelog</a>
+          <a href="#" className="px-5 py-2 rounded-full bg-white text-[#0439C1] font-semibold text-base shadow border border-[#4ED193] hover:bg-[#4ED193] hover:text-[#0439C1] transition-all" style={{ marginBottom: 4 }}>Privacy</a>
+          <a href="#" className="px-5 py-2 rounded-full bg-white text-[#0439C1] font-semibold text-base shadow border border-[#4ED193] hover:bg-[#4ED193] hover:text-[#0439C1] transition-all" style={{ marginBottom: 4 }}>Terms</a>
           <a href="#" className="px-5 py-2 rounded-full bg-white text-[#0439C1] font-semibold text-base shadow border border-[#4ED193] hover:bg-[#4ED193] hover:text-[#0439C1] transition-all" style={{ marginBottom: 4 }}>Contact</a>
-          <a href="#" className="px-5 py-2 rounded-full bg-white text-[#0439C1] font-semibold text-base shadow border border-[#4ED193] hover:bg-[#4ED193] hover:text-[#0439C1] transition-all" style={{ marginBottom: 4 }}>Terms <span style={{ fontFamily: 'Arial, sans-serif', fontSize: '1.1em', verticalAlign: 'middle', display: 'inline', letterSpacing: 0, margin: 0, padding: 0 }}>+</span> Conditions</a>
-          <a href="#" className="px-5 py-2 rounded-full bg-white text-[#0439C1] font-semibold text-base shadow border border-[#4ED193] hover:bg-[#4ED193] hover:text-[#0439C1] transition-all" style={{ marginBottom: 4 }}>Privacy Policy</a>
         </div>
         {/* Watermark logo directly under nav buttons, above copyright */}
         <div className="w-full flex justify-center mb-0 mt-10 pb-30">
