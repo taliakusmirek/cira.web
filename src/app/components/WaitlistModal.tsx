@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
 
 interface WaitlistModalProps {
@@ -19,6 +19,18 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose })
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState('');
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsVisible(true);
+    } else {
+      const timer = setTimeout(() => {
+        setIsVisible(false);
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -62,18 +74,18 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose })
     });
   };
 
-  if (!isOpen) return null;
+  if (!isOpen && !isVisible) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg p-8 max-w-md w-full max-h-[90vh] overflow-y-auto">
+    <div className={`fixed inset-0 backdrop-blur-sm bg-white/20 flex items-center justify-center z-50 p-4 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
+      <div className={`bg-white rounded-lg p-8 max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl transition-all duration-300 ${isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}>
         {!isSubmitted ? (
           <>
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl font-bold text-[#0439C1]">Join the <span className="underline decoration-[#4ED193]/60 decoration-2">Waitlist</span></h2>
               <button
                 onClick={onClose}
-                className="text-gray-500 hover:text-gray-700 text-2xl font-bold"
+                className="text-gray-500 hover:text-gray-700 text-2xl font-bold transition-colors duration-200"
               >
                 ×
               </button>
@@ -101,7 +113,7 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose })
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ED193] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ED193] focus:border-transparent text-[#0439C1] placeholder-gray-400"
                   placeholder="your@email.com"
                 />
               </div>
@@ -117,7 +129,7 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose })
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ED193] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ED193] focus:border-transparent text-[#0439C1] placeholder-gray-400"
                   placeholder="Your name"
                 />
               </div>
@@ -132,7 +144,7 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose })
                   name="company"
                   value={formData.company}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ED193] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ED193] focus:border-transparent text-[#0439C1] placeholder-gray-400"
                   placeholder="Your company (optional)"
                 />
               </div>
@@ -147,7 +159,7 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose })
                   name="role"
                   value={formData.role}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ED193] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ED193] focus:border-transparent text-[#0439C1] placeholder-gray-400"
                   placeholder="Your role (optional)"
                 />
               </div>
@@ -161,7 +173,7 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose })
                   name="useCase"
                   value={formData.useCase}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ED193] focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ED193] focus:border-transparent text-[#0439C1]"
                 >
                   <option value="brand">Brand/Company (Create DPPs)</option>
                   <option value="consumer">Consumer (Discover transparent products)</option>
