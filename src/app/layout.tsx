@@ -7,8 +7,8 @@ const notoSans = Noto_Sans({ subsets: ["latin"], variable: "--font-noto-sans" })
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk" });
 
 export const metadata: Metadata = {
-  title: "CIRA – No-Code Regulatory Compliance Platform",
-  description: "CIRA turns your documents into compliant, on-brand product passports with QR codes and shareable pages — for EU DPP, AI Act, carbon reporting, and beyond.",
+  title: "CIRA – Product Transparency Platform",
+  description: "Beautiful product transparency for brands and consumers. Create Digital Product Passports, validate sustainability claims, and discover ethically stunning fashion.",
 };
 
 export default function RootLayout({
