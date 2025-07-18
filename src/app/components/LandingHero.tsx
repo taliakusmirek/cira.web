@@ -406,7 +406,7 @@ export const LandingHero: React.FC = () => {
             {/* Left Column: For Users */}
             <div>
               <h2 className="text-3xl lg:text-4xl font-black text-[#0439C1] mb-6">
-                For <span className="underline decoration-[#4ED193]/60 decoration-2">Users</span> Who Build to Last
+                For <span className="underline decoration-[#4ED193]/60 decoration-2">Users</span> 
               </h2>
               <p className="text-lg text-[#0439C1] mb-8 leading-relaxed">
                 Shop with confidence knowing what truly matters: quality.
@@ -443,7 +443,7 @@ export const LandingHero: React.FC = () => {
             {/* Right Column: For Brands */}
             <div>
               <h2 className="text-3xl lg:text-4xl font-black text-[#0439C1] mb-6">
-                For <span className="underline decoration-[#4ED193]/60 decoration-2">Brands</span> Who Build to Last
+                For <span className="underline decoration-[#4ED193]/60 decoration-2">Brands</span> 
               </h2>
               <p className="text-lg text-[#0439C1] mb-8 leading-relaxed">
                 Stand out for what truly matters: quality.
