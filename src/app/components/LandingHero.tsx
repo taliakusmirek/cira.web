@@ -56,78 +56,6 @@ export const LandingHero: React.FC = () => {
   const [allImagesLoaded, setAllImagesLoaded] = useState(false);
   const [isWaitlistModalOpen, setIsWaitlistModalOpen] = useState(false);
 
-  // Activity messages for auto-scroll
-  const activityMessages = [
-    {
-      id: 1,
-      name: "Sarah M.",
-      initial: "S",
-      avatar: "from-pink-400 to-purple-500",
-      message: "just found a sustainable silk blouse",
-      time: "2 minutes ago"
-    },
-    {
-      id: 2,
-      name: "Emma L.",
-      initial: "E",
-      avatar: "from-blue-400 to-cyan-500",
-      message: "scanned Aritzia's Babaton coat",
-      time: "4 minutes ago"
-    },
-    {
-      id: 3,
-      name: "Maya K.",
-      initial: "M",
-      avatar: "from-green-400 to-emerald-500",
-      message: "graded Zara top to a C-...yikes",
-      time: "6 minutes ago",
-      highlight: "C-...yikes"
-    },
-    {
-      id: 4,
-      name: "Alex R.",
-      initial: "A",
-      avatar: "from-orange-400 to-red-500",
-      message: "discovered organic cotton basics",
-      time: "8 minutes ago"
-    },
-    {
-      id: 5,
-      name: "Jess T.",
-      initial: "J",
-      avatar: "from-purple-400 to-pink-500",
-      message: "found recycled denim with A+ rating",
-      time: "10 minutes ago"
-    },
-    {
-      id: 6,
-      name: "Lily C.",
-      initial: "L",
-      avatar: "from-indigo-400 to-blue-500",
-      message: "checked Abercrombie's transparency score",
-      time: "12 minutes ago"
-    },
-    {
-      id: 7,
-      name: "Sophie H.",
-      initial: "S",
-      avatar: "from-teal-400 to-green-500",
-      message: "found sustainable alternatives to fast fashion",
-      time: "14 minutes ago"
-    },
-    {
-      id: 8,
-      name: "Zoe M.",
-      initial: "Z",
-      avatar: "from-rose-400 to-pink-500",
-      message: "discovered a brand with perfect DPP score",
-      time: "16 minutes ago"
-    }
-  ];
-
-  // Create duplicated messages for seamless loop
-  const duplicatedMessages = [...activityMessages, ...activityMessages, ...activityMessages];
-
   useEffect(() => {
     setIsVisible(true);
     
@@ -246,9 +174,18 @@ export const LandingHero: React.FC = () => {
   return (
     <>
       <section
-        className="w-full bg-[#FEFEFE] min-h-screen flex flex-col"
+        className="w-full bg-[#FEFEFE] min-h-screen flex flex-col relative"
         style={{ fontFamily: "'Inter', sans-serif" }}
       >
+        {/* Blue Ombre Overlay */}
+        <div 
+          className="absolute inset-0 pointer-events-none z-10"
+          style={{
+            background: 'linear-gradient(to top, rgba(4, 57, 193, 0.1) 0%, rgba(4, 57, 193, 0.05) 50%, transparent 100%)',
+            height: '100%'
+          }}
+        />
+        
         <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         
@@ -296,23 +233,10 @@ export const LandingHero: React.FC = () => {
         .product-card-transition {
           transition: all 0.3s ease-in-out;
         }
-
-        @keyframes scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-66.666%);
-          }
-        }
-
-        .animate-scroll {
-          animation: scroll 24s linear infinite;
-        }
       `}</style>
       
       {/* Header / Navigation */}
-      <div className="w-full relative flex items-center justify-between px-12 py-1 border-b border-gray-100/50 backdrop-blur-sm bg-white/80">
+      <div className="w-full relative flex items-center justify-between px-12 py-1 border-b border-gray-100/50 backdrop-blur-sm bg-white/80 z-20">
         {/* Logo */}
         <div className="flex items-center gap-3 z-10">
           <div className="relative">
@@ -350,23 +274,31 @@ export const LandingHero: React.FC = () => {
       </div>
 
       {/* Hero Section */}
-      <div className="w-full px-12 py-48 -mt-24">
+      <div className="w-full px-12 py-48 -mt-24 relative z-20">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Left Side - Text Content */}
             <div className={`${isVisible ? 'fade-in-up' : 'opacity-0'}`}>
               <h1 className="text-5xl lg:text-6xl font-black text-[#0439C1] mb-6 leading-tight">
-                We make product transparency beautiful.
+                Buy Better.<br /> Wear Longer.
               </h1>
               <p className="text-lg text-[#0439C1] mb-8 leading-relaxed">
-                For <span className="underline decoration-[#4ED193]/60 decoration-2">brands</span> who need to <span className="underline decoration-[#4ED193]/60 decoration-2">comply</span>, for <span className="underline decoration-[#4ED193]/60 decoration-2">consumers</span> who want to <span className="underline decoration-[#4ED193]/60 decoration-2">know</span>.
+                CIRA helps you shop clothes that are built to last: with real quality scores, material breakdowns, and care insights that actually matter.
               </p>
-              <a
-                href="#generate"
-                className="px-8 py-4 rounded-full border-2 border-[#0439C1] text-[#0439C1] font-bold text-lg transition-all duration-300 hover:bg-[#0439C1] hover:text-white hover:scale-105 hover:shadow-xl hover-lift inline-block"
-              >
-                Try our Beta
-              </a>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="#generate"
+                  className="px-8 py-4 rounded-full border-2 border-[#0439C1] text-[#0439C1] font-bold text-lg transition-all duration-300 hover:bg-[#0439C1] hover:text-white hover:scale-105 hover:shadow-xl hover-lift inline-block text-center"
+                >
+                  Scan Item Score
+                </a>
+                <button
+                  onClick={handleWaitlistClick}
+                  className="px-8 py-4 rounded-full bg-[#0439C1] text-white font-bold text-lg transition-all duration-300 hover:bg-[#4ED193] hover:scale-105 hover:shadow-xl hover-lift inline-block"
+                >
+                  Join Waitlist
+                </button>
+              </div>
             </div>
             
             {/* Right Side - Product Card */}
@@ -466,162 +398,164 @@ export const LandingHero: React.FC = () => {
         </div>
       </div>
 
-      {/* Process Section */}
-      <div className="w-full px-12 py-48 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-12">
-            {/* Step 1 */}
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mb-4 mx-auto">
-                <svg className="w-8 h-8 text-[#0439C1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-[#0439C1]">Upload Your <span className="underline decoration-[#4ED193]/60 decoration-2">Docs</span></h3>
-            </div>
-            
-            {/* Arrow */}
-            <div className="hidden lg:block">
-              <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </div>
-            
-            {/* Step 2 */}
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mb-4 mx-auto">
-                <svg className="w-8 h-8 text-[#0439C1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-[#0439C1]">Verify <span className="underline decoration-[#4ED193]/60 decoration-2">Compliance</span></h3>
-            </div>
-            
-            {/* Arrow */}
-            <div className="hidden lg:block">
-              <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </div>
-            
-            {/* Step 3 */}
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mb-4 mx-auto">
-                <svg className="w-8 h-8 text-[#0439C1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-[#0439C1]">Share <span className="underline decoration-[#4ED193]/60 decoration-2">Anywhere</span></h3>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Dual Narrative Section */}
-      <div className="w-full px-12 py-48 bg-white">
+      {/* For Users & Brands Section - Side by Side */}
+      <div className="w-full px-12 py-48 bg-white relative z-20">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             
-            {/* Left Column: For Brands & Creators */}
+            {/* Left Column: For Users */}
             <div>
               <h2 className="text-3xl lg:text-4xl font-black text-[#0439C1] mb-6">
-                For <span className="underline decoration-[#4ED193]/60 decoration-2">Brands</span> & <span className="underline decoration-[#4ED193]/60 decoration-2">Creators</span>
+                For <span className="underline decoration-[#4ED193]/60 decoration-2">Users</span> Who Build to Last
               </h2>
               <p className="text-lg text-[#0439C1] mb-8 leading-relaxed">
-                <span className="underline decoration-[#4ED193]/60 decoration-2">Automate</span> compliance, create <span className="underline decoration-[#4ED193]/60 decoration-2">Digital Product Passports</span>, and boost <span className="underline decoration-[#4ED193]/60 decoration-2">trust</span>—no code required.
+                Shop with confidence knowing what truly matters: quality.
+              </p>
+              <p className="text-lg text-[#0439C1] mb-8 leading-relaxed">
+                CIRA helps you discover brands that prioritize craftsmanship, transparency, and longevity — so you can build a wardrobe that lasts.
               </p>
               
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
-                  <span className="text-[#4ED193] text-xl font-bold">✓</span>
-                  <span className="text-[#0439C1]">Generate <span className="underline decoration-[#4ED193]/60 decoration-2">DPPs</span> instantly</span>
+                  <span className="text-[#4ED193] text-xl font-bold">🔍</span>
+                  <span className="text-[#0439C1]"> See any clothing tag for instant quality insights</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-[#4ED193] text-xl font-bold">✓</span>
-                  <span className="text-[#0439C1]">Share <span className="underline decoration-[#4ED193]/60 decoration-2">regulatory proof</span></span>
+                  <span className="text-[#4ED193] text-xl font-bold">📊</span>
+                  <span className="text-[#0439C1]">Compare durability scores across brands</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-[#4ED193] text-xl font-bold">✓</span>
-                  <span className="text-[#0439C1]">Track with <span className="underline decoration-[#4ED193]/60 decoration-2">analytics</span></span>
+                  <span className="text-[#4ED193] text-xl font-bold">💡</span>
+                  <span className="text-[#0439C1]">Get care tips to make your clothes last longer</span>
                 </div>
+              </div>
+              
+              <div className="mt-8">
+                <a
+                  href="#demo"
+                  className="px-8 py-4 rounded-full border-2 border-[#0439C1] text-[#0439C1] font-bold text-lg transition-all duration-300 hover:bg-[#0439C1] hover:text-white hover:scale-105 hover:shadow-xl hover-lift inline-block"
+                >
+                  → Try It Now
+                </a>
               </div>
             </div>
             
-            {/* Right Column: For Fashion Girls */}
+            {/* Right Column: For Brands */}
             <div>
               <h2 className="text-3xl lg:text-4xl font-black text-[#0439C1] mb-6">
-                For <span className="underline decoration-[#4ED193]/60 decoration-2">Fashion Girls</span>
+                For <span className="underline decoration-[#4ED193]/60 decoration-2">Brands</span> Who Build to Last
               </h2>
               <p className="text-lg text-[#0439C1] mb-8 leading-relaxed">
-                <span className="underline decoration-[#4ED193]/60 decoration-2">Validate</span> what&apos;s in your closet and discover <span className="underline decoration-[#4ED193]/60 decoration-2">ethically stunning</span> finds.
+                Stand out for what truly matters: quality.
+              </p>
+              <p className="text-lg text-[#0439C1] mb-8 leading-relaxed">
+                CIRA helps brands showcase their craftsmanship, get DPP-ready, and build long-term loyalty with conscious consumers.
               </p>
               
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
-                  <span className="text-[#4ED193] text-xl font-bold">✓</span>
-                  <span className="text-[#0439C1]">Check <span className="underline decoration-[#4ED193]/60 decoration-2">receipts</span> for brands</span>
+                  <span className="text-[#4ED193] text-xl font-bold">🌿</span>
+                  <span className="text-[#0439C1]">Digital Product Passport compliant</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-[#4ED193] text-xl font-bold">✓</span>
-                  <span className="text-[#0439C1]">See store <span className="underline decoration-[#4ED193]/60 decoration-2">DPP scores</span></span>
+                  <span className="text-[#4ED193] text-xl font-bold">📈</span>
+                  <span className="text-[#0439C1]">Quality data drives purchase confidence</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-[#4ED193] text-xl font-bold">✓</span>
-                  <span className="text-[#0439C1]">Find <span className="underline decoration-[#4ED193]/60 decoration-2">fashion matches</span></span>
+                  <span className="text-[#4ED193] text-xl font-bold">💬</span>
+                  <span className="text-[#0439C1]">Let customers <em>see</em> what makes you different</span>
                 </div>
+              </div>
+              
+              <div className="mt-8">
+                <a
+                  href="/brands"
+                  className="px-8 py-4 rounded-full border-2 border-[#0439C1] text-[#0439C1] font-bold text-lg transition-all duration-300 hover:bg-[#0439C1] hover:text-white hover:scale-105 hover:shadow-xl hover-lift inline-block"
+                >
+                  → Partner With Us
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Live Explorer Section */}
-      <div className="w-full px-12 py-48 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl lg:text-4xl font-black text-[#0439C1] mb-12 text-center">
-            It&apos;s <span className="underline decoration-[#4ED193]/60 decoration-2">happening now.</span>
-          </h2>
+      {/* Quality Features Section */}
+      <div className="w-full px-12 py-48 bg-white relative z-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-black text-[#0439C1] mb-6">
+              Clothes shouldn&apos;t fall apart after 3 washes.
+            </h2>
+          </div>
           
-          {/* Live Activity Feed */}
-          <div className="bg-gray-50 rounded-lg p-8 max-w-6xl mx-auto overflow-hidden">
-            <div className="flex space-x-6 animate-scroll">
-              {duplicatedMessages.map((activity, index) => (
-                <div key={`${activity.id}-${index}`} className="bg-white rounded-lg p-6 shadow-sm min-w-[300px] flex-shrink-0">
-                  <div className="flex items-center gap-4">
-                    <div className={`w-12 h-12 bg-gradient-to-br ${activity.avatar} rounded-full flex items-center justify-center text-white text-sm font-bold`}>
-                      {activity.initial}
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-base text-[#0439C1]">
-                        <span className="font-semibold">{activity.name}</span> {activity.message.includes('C-...yikes') ? 
-                          <span>graded Zara top to a <span className="text-red-500 font-semibold">C-...yikes</span></span> :
-                          <span>{activity.message}</span>
-                        }
-                      </p>
-                      <p className="text-sm text-gray-500 mt-1">{activity.time}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {/* Verified Fabric Quality */}
+            <div className="text-center">
+              <div className="w-16 h-16 bg-[#4ED193] rounded-full flex items-center justify-center mb-6 mx-auto">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-[#0439C1] mb-4">🧵 Verified Fabric Quality</h3>
+              <p className="text-[#0439C1] leading-relaxed">
+                Know if your item pills, warps, or holds up.
+              </p>
             </div>
+            
+            {/* Real Care Insights */}
+            <div className="text-center">
+              <div className="w-16 h-16 bg-[#4ED193] rounded-full flex items-center justify-center mb-6 mx-auto">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-[#0439C1] mb-4">🧼 Real Care Insights</h3>
+              <p className="text-[#0439C1] leading-relaxed">
+                How to make it last longer — from detergent to drying.
+              </p>
+            </div>
+            
+            {/* Transparency You Can Trust */}
+            <div className="text-center">
+              <div className="w-16 h-16 bg-[#4ED193] rounded-full flex items-center justify-center mb-6 mx-auto">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-[#0439C1] mb-4">🧷 Transparency You Can Trust</h3>
+              <p className="text-[#0439C1] leading-relaxed">
+                Materials, craftsmanship, and how it was made.
+              </p>
+            </div>
+          </div>
+          
+          <div className="text-center mt-12">
+            <a
+              href="#demo"
+              className="px-8 py-4 rounded-full border-2 border-[#0439C1] text-[#0439C1] font-bold text-lg transition-all duration-300 hover:bg-[#0439C1] hover:text-white hover:scale-105 hover:shadow-xl hover-lift inline-block"
+            >
+              → See how we score items
+            </a>
           </div>
         </div>
       </div>
 
-      {/* Join Waitlist Section */}
-      <div className="w-full px-12 py-48 bg-white">
+      {/* Join Us Section - Quality Girls Club */}
+      <div className="w-full px-12 py-48 bg-white relative z-20">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl lg:text-4xl font-black text-[#0439C1] mb-6">
-            Join the <span className="underline decoration-[#4ED193]/60 decoration-2">Waitlist</span>
+            Quality Girls Club 💬
           </h2>
           <p className="text-lg text-[#0439C1] mb-8 max-w-2xl mx-auto">
-            Be the first to experience <span className="underline decoration-[#4ED193]/60 decoration-2">product transparency</span> that actually works.
+            Join thousands ditching fast fashion and finding pieces that <em>actually last</em>. No fluff — just facts.
           </p>
           <button
             onClick={handleWaitlistClick}
             className="px-8 py-4 rounded-full bg-[#0439C1] text-white font-bold text-lg transition-all duration-300 hover:bg-[#4ED193] hover:scale-105 hover:shadow-xl hover-lift inline-block"
           >
-            Join Waitlist
+            Join the waitlist
           </button>
         </div>
       </div>
@@ -634,4 +568,4 @@ export const LandingHero: React.FC = () => {
     />
   </>
 );
-}; 
+};
