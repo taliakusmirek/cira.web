@@ -77,33 +77,33 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose })
   if (!isOpen && !isVisible) return null;
 
   return (
-    <div className={`fixed inset-0 backdrop-blur-sm bg-white/20 flex items-center justify-center z-50 p-4 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
-      <div className={`bg-white rounded-lg p-8 max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl transition-all duration-300 ${isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}>
+    <div className={`fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
+      <div className={`bg-white rounded-2xl p-8 max-w-lg w-full shadow-xl border border-black/5 transition-all duration-300 ${isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}>
         {!isSubmitted ? (
           <>
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-[#0439C1]">Join the <span className="underline decoration-[#4ED193]/60 decoration-2">Waitlist</span></h2>
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-2xl font-light text-gray-900 tracking-tight">Join the <span className="text-blue-600">Waitlist</span></h2>
               <button
                 onClick={onClose}
-                className="text-gray-500 hover:text-gray-700 text-2xl font-bold transition-colors duration-200"
+                className="text-gray-400 hover:text-gray-600 text-2xl font-light transition-colors duration-200"
               >
                 ×
               </button>
             </div>
             
-            <p className="text-[#0439C1] mb-6">
+            <p className="text-gray-600 mb-8 font-normal tracking-wide leading-relaxed">
               Be the first to experience product transparency that actually works.
             </p>
             
             {error && (
-              <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl font-normal">
                 {error}
               </div>
             )}
             
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-[#0439C1] mb-1">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2 tracking-wide">
                   Email *
                 </label>
                 <input
@@ -113,13 +113,13 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose })
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ED193] focus:border-transparent text-[#0439C1] placeholder-gray-400"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent text-gray-900 placeholder-gray-400 font-normal transition-all duration-300"
                   placeholder="your@email.com"
                 />
               </div>
               
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-[#0439C1] mb-1">
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2 tracking-wide">
                   Name *
                 </label>
                 <input
@@ -129,13 +129,13 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose })
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ED193] focus:border-transparent text-[#0439C1] placeholder-gray-400"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent text-gray-900 placeholder-gray-400 font-normal transition-all duration-300"
                   placeholder="Your name"
                 />
               </div>
               
               <div>
-                <label htmlFor="company" className="block text-sm font-medium text-[#0439C1] mb-1">
+                <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2 tracking-wide">
                   Company
                 </label>
                 <input
@@ -144,13 +144,13 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose })
                   name="company"
                   value={formData.company}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ED193] focus:border-transparent text-[#0439C1] placeholder-gray-400"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent text-gray-900 placeholder-gray-400 font-normal transition-all duration-300"
                   placeholder="Your company (optional)"
                 />
               </div>
               
               <div>
-                <label htmlFor="role" className="block text-sm font-medium text-[#0439C1] mb-1">
+                <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-2 tracking-wide">
                   Role
                 </label>
                 <input
@@ -159,13 +159,13 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose })
                   name="role"
                   value={formData.role}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ED193] focus:border-transparent text-[#0439C1] placeholder-gray-400"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent text-gray-900 placeholder-gray-400 font-normal transition-all duration-300"
                   placeholder="Your role (optional)"
                 />
               </div>
               
               <div>
-                <label htmlFor="useCase" className="block text-sm font-medium text-[#0439C1] mb-1">
+                <label htmlFor="useCase" className="block text-sm font-medium text-gray-700 mb-2 tracking-wide">
                   I&apos;m interested in using CIRA for:
                 </label>
                 <select
@@ -173,7 +173,7 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose })
                   name="useCase"
                   value={formData.useCase}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ED193] focus:border-transparent text-[#0439C1]"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent text-gray-900 font-normal transition-all duration-300"
                 >
                   <option value="brand">Brand/Company (Create DPPs)</option>
                   <option value="consumer">Consumer (Discover transparent products)</option>
@@ -183,7 +183,7 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose })
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full px-6 py-3 bg-[#0439C1] text-white font-semibold rounded-md hover:bg-[#4ED193] transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-6 py-4 bg-gray-900 text-white font-medium rounded-xl hover:bg-gray-800 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed tracking-wide border border-gray-900 shadow-sm"
               >
                 {isSubmitting ? 'Joining...' : 'Join Waitlist'}
               </button>
@@ -191,13 +191,19 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose })
           </>
         ) : (
           <div className="text-center">
-            <div className="w-16 h-16 bg-[#4ED193] rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-16 h-16 bg-green-50 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-green-200">
+              <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-[#0439C1] mb-2">Welcome to the waitlist!</h3>
-            <p className="text-[#0439C1]">We&apos;ll notify you when we launch.</p>
+            <h3 className="text-xl font-light text-gray-900 mb-4 tracking-tight">Welcome to the waitlist!</h3>
+            <p className="text-gray-600 font-normal tracking-wide mb-6">We&apos;ll notify you when we launch.</p>
+            <button
+              onClick={onClose}
+              className="px-6 py-3 bg-gray-900 text-black font-medium rounded-xl hover:bg-gray-800 transition-colors duration-300 tracking-wide border border-gray-900"
+            >
+              Continue
+            </button>
           </div>
         )}
       </div>
