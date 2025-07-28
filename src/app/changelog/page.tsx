@@ -25,12 +25,14 @@ export default function Changelog() {
             </nav>
             
             {/* CTA Button */}
-            <Link
-              href="#waitlist"
-              className="px-6 py-2.5 bg-gray-900 text-white rounded-xl font-medium text-sm tracking-wide hover:bg-gray-800 transition-colors"
+            <a
+              href="https://beta.cirastyle.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 bg-gray-900 text-white rounded-xl font-medium text-lg tracking-wide hover:bg-gray-800 transition-colors inline-block"
             >
               Try our Beta
-            </Link>
+            </a>
           </div>
         </div>
       </div>
@@ -112,12 +114,14 @@ export default function Changelog() {
           </div>
           
           <div className="mt-10">
-            <Link
-              href="#waitlist"
+            <a
+              href="https://beta.cirastyle.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-8 py-4 bg-gray-900 text-white rounded-xl font-medium text-lg tracking-wide hover:bg-gray-800 transition-colors inline-block"
             >
-              Join the waitlist
-            </Link>
+              Try our Beta
+            </a>
           </div>
         </div>
       </div>

@@ -25,12 +25,14 @@ export default function About() {
             </nav>
             
             {/* CTA Button */}
-            <Link
-              href="#waitlist"
+            <a
+              href="https://beta.cirastyle.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-6 py-2.5 bg-gray-900 text-white rounded-xl font-medium text-sm tracking-wide hover:bg-gray-800 transition-colors"
             >
               Try our Beta
-            </Link>
+            </a>
           </div>
         </div>
       </div>
@@ -132,12 +134,14 @@ export default function About() {
           <p className="text-lg text-gray-600 mb-10 leading-relaxed font-normal tracking-wide max-w-2xl mx-auto">
             Be part of the movement that&apos;s changing how we think about what we buy and wear.
           </p>
-          <Link
-            href="#waitlist"
+          <a
+            href="https://beta.cirastyle.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-8 py-4 bg-gray-900 text-white rounded-xl font-medium text-lg tracking-wide hover:bg-gray-800 transition-colors inline-block"
           >
-            Join the waitlist
-          </Link>
+            Try our Beta
+          </a>
         </div>
       </div>
     </div>

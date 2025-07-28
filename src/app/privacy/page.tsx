@@ -25,12 +25,14 @@ export default function Privacy() {
             </nav>
             
             {/* CTA Button */}
-            <Link
-              href="#waitlist"
+            <a
+              href="https://beta.cirastyle.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-6 py-2.5 bg-gray-900 text-white rounded-xl font-medium text-sm tracking-wide hover:bg-gray-800 transition-colors"
             >
               Try our Beta
-            </Link>
+            </a>
           </div>
         </div>
       </div>
@@ -204,8 +206,7 @@ export default function Privacy() {
             </h2>
             <div className="space-y-4 text-gray-600 leading-relaxed font-normal tracking-wide">
               <p>
-                If you have any questions about this Privacy Policy or our data practices, 
-                please contact us at:
+                If you have any questions about this Privacy Policy, please contact us at privacy@trycira.com. You can also try our beta, or contact us for support.
               </p>
               <div className="bg-gray-50 rounded-xl p-6">
                 <p className="text-gray-700 font-medium tracking-wide">Email: privacy@trycira.com</p>

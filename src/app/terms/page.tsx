@@ -25,12 +25,14 @@ export default function Terms() {
             </nav>
             
             {/* CTA Button */}
-            <Link
-              href="#waitlist"
+            <a
+              href="https://beta.cirastyle.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-6 py-2.5 bg-gray-900 text-white rounded-xl font-medium text-sm tracking-wide hover:bg-gray-800 transition-colors"
             >
               Try our Beta
-            </Link>
+            </a>
           </div>
         </div>
       </div>

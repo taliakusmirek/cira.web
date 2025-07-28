@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { WaitlistModal } from './WaitlistModal';
 
@@ -153,11 +153,6 @@ export const LandingHero: React.FC = () => {
     }
   };
 
-  const handleWaitlistClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setIsWaitlistModalOpen(true);
-  };
-
   return (
     <>
       <div className="min-h-screen bg-gray-50">
@@ -179,12 +174,14 @@ export const LandingHero: React.FC = () => {
               </nav>
               
               {/* Waitlist Button */}
-              <button
-                onClick={handleWaitlistClick}
+              <a
+                href="https://beta.cirastyle.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-6 py-2.5 bg-gray-900 text-white rounded-xl font-medium text-sm tracking-wide hover:bg-gray-800 transition-colors"
               >
-                Join Waitlist
-              </button>
+                Try our Beta
+              </a>
             </div>
           </div>
         </div>
@@ -202,13 +199,15 @@ export const LandingHero: React.FC = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href="#generate"
+                  href="https://beta.cirastyle.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-8 py-4 bg-gray-900 text-white rounded-xl font-medium text-lg tracking-wide hover:bg-gray-800 transition-colors inline-block text-center"
                 >
-                  Scan Item Score
+                  Try Beta
                 </a>
                 <button
-                  onClick={handleWaitlistClick}
+                  onClick={() => setIsWaitlistModalOpen(true)}
                   className="px-8 py-4 bg-transparent text-gray-600 border border-gray-200 rounded-xl font-medium text-lg tracking-wide hover:border-gray-900 hover:text-gray-900 transition-colors inline-block"
                 >
                   Join Waitlist
@@ -341,10 +340,12 @@ export const LandingHero: React.FC = () => {
               </div>
               
               <a
-                href="#demo"
+                href="https://beta.cirastyle.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-8 py-4 bg-gray-900 text-white rounded-xl font-medium text-lg tracking-wide hover:bg-gray-800 transition-colors inline-block"
               >
-                → Try It Now
+                → Try it Now
               </a>
             </div>
             
@@ -443,7 +444,9 @@ export const LandingHero: React.FC = () => {
           
           <div className="text-center mt-16">
             <a
-              href="#demo"
+              href="https://beta.cirastyle.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-8 py-4 bg-gray-900 text-white rounded-xl font-medium text-lg tracking-wide hover:bg-gray-800 transition-colors inline-block"
             >
               → See how we score items
@@ -460,21 +463,18 @@ export const LandingHero: React.FC = () => {
             <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed font-normal tracking-wide">
               Join thousands ditching fast fashion and finding pieces that <em>actually last</em>. No fluff just facts.
             </p>
-            <button
-              onClick={handleWaitlistClick}
+            <a
+              href="https://beta.cirastyle.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-8 py-4 bg-gray-900 text-white rounded-xl font-medium text-lg tracking-wide hover:bg-gray-800 transition-colors inline-block"
             >
-              Join the waitlist
-            </button>
+              Try our Beta
+            </a>
           </div>
         </div>
       </div>
-
-      {/* Waitlist Modal */}
-      <WaitlistModal 
-        isOpen={isWaitlistModalOpen} 
-        onClose={() => setIsWaitlistModalOpen(false)} 
-      />
+      <WaitlistModal isOpen={isWaitlistModalOpen} onClose={() => setIsWaitlistModalOpen(false)} />
     </>
   );
 };
